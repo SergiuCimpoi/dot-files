@@ -4,14 +4,21 @@ return {
   priority = 1000,
   config = function()
     require("catppuccin").setup({
-      flavour = "auto", -- latte, frappe, macchiato, mocha
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
       background = { -- :h background
         light = "latte",
         dark = "mocha",
       },
       transparent_background = false, -- disables setting the background color.
       show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-      term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+      term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
+      highlight_overrides = {
+        mocha = function(mocha)
+          return {
+            FloatBorder = { fg = mocha.blue, bg = mocha.mantle },
+          }
+        end,
+      },
       dim_inactive = {
         enabled = false, -- dims the background color of inactive window
         shade = "dark",
@@ -40,10 +47,33 @@ return {
       default_integrations = true,
       integrations = {
         cmp = true,
+        alpha = true,
+        mason = true,
         gitsigns = true,
         nvimtree = true,
         treesitter = true,
-        notify = false,
+        notify = true,
+        telescope = true,
+        native_lsp = {
+          enabled = true,
+          virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+            ok = { "italic" },
+          },
+          underlines = {
+            errors = { "underline" },
+            hints = { "underline" },
+            warnings = { "underline" },
+            information = { "underline" },
+            ok = { "underline" },
+          },
+          inlay_hints = {
+            background = true,
+          },
+        },
         mini = {
           enabled = true,
           indentscope_color = "",
