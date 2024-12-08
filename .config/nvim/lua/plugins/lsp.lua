@@ -152,7 +152,14 @@ return {
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
-      clangd = {},
+      clangd = {
+        {
+          cmd = { "clangd", "--completion-style=detailed" },
+          on_attach = function()
+            vim.keymap.set("n", "<A-o>", "<CMD>ClangdSwitchSourceHeader<CR>", { buffer = 0 })
+          end,
+        },
+      },
       -- gopls = {},
       -- pyright = {},
       -- rust_analyzer = {},
@@ -168,6 +175,9 @@ return {
         -- capabilities = {},
         settings = {
           Lua = {
+            hint = {
+              enable = true,
+            },
             completion = {
               callSnippet = "Replace",
             },
