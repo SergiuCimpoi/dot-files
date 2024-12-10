@@ -1,13 +1,3 @@
-#
-# ~/.bashrc
-#
-
-# If not running interactively, don't do anything
-# [[ $- != *i* ]] && return
-#
-# alias ls='ls --color=auto'
-# alias grep='grep --color=auto'
-# PS1='[\u@\h \W]\$ '
 
 autoload -U colors && colors
 setopt autocd
@@ -55,18 +45,20 @@ preexec() { echo -ne '\e[5 q' ;}
 bindkey -s '^a' 'bc -lq\n'
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
-bindkey '^[[P' delete-char
 
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-source /usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.local/share/zsh/plugins/fsh/fast-syntax-highlighting.plugin.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
+alias ls='lsd --color=auto'
+alias grep='grep --color=auto'
 alias p="ping google.com"
-alias ll="/usr/local/bin/lsd --long --group-dirs=first"
-alias lla="/usr/local/bin/lsd --long --all --group-dirs=first"
-alias llt="/usr/local/bin/lsd --tree --all"
+alias ll="lsd --long --group-dirs=first"
+alias lla="lsd --long --all --group-dirs=first"
+alias llt="lsd --tree --all"
 alias shell="vim $ZDOTDIR/.zshrc"
 alias profile="vim $HOME/.zprofile"
 # alias rm="trash"
