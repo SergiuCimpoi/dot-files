@@ -14,6 +14,12 @@ M.base46 = {
   },
 }
 
+M.ui = {
+  telescope = {
+    style = "bordered",
+  },
+}
+
 M.mason = {
   pkgs = {
     -- Language servers
@@ -33,7 +39,7 @@ M.mason = {
 
 -- Extend NvChad's functionality
 local function setup_mason_auto_install()
-  local mason_registry = require "mason-registry"
+  local mason_registry = require("mason-registry")
   local pkgs = M.mason.pkgs
   ---@diagnostic disable-next-line: undefined-field
   local skip = M.mason.skip
