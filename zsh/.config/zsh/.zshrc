@@ -67,6 +67,7 @@ pk() {
   pgrep -i "$1" | sudo xargs kill -9
 }
 
+cd ~
 neofetch 
 
 eval "$(starship init zsh)"
