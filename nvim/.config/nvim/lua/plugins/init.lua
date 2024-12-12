@@ -131,6 +131,9 @@ return {
   {
     require("configs.trouble"),
   },
+  {
+    require("configs.lazygit"),
+  },
   -- {
   --  "stevearc/dressing.nvim",
   --  	event = "VeryLazy",
