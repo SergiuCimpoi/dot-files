@@ -6,8 +6,8 @@
 local M = {}
 
 M.base46 = {
-  theme = "tokyonight",
-  transparency = true,
+  theme = "catppuccin",
+  -- transparency = true,
   ---@diagnostic disable-next-line: missing-fields
   hl_override = {
     ["@comment"] = { italic = true },

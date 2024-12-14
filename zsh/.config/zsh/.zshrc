@@ -6,6 +6,11 @@ setopt interactive_comments
 export HISTSIZE=268435456
 export SAVEHIST="$HISTSIZE"
 export HISTFILE="$ZDOTDIR/.zsh_history"
+export EDITOR=/usr/bin/nvim
+export TERM=xterm-256color
+export PROMPT_EOL_MARK=""
+
+
 setopt INC_APPEND_HISTORY
 
 bindkey '^R' history-incremental-search-backward
