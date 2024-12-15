@@ -1,4 +1,3 @@
-
 local map = vim.keymap.set
 
 -- Mappings extracted from chad
@@ -48,14 +47,12 @@ map(
   { desc = "telescope find all files" }
 )
 
-
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })
 
 map("n", "<leader>wk", function()
-  vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
+  vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
 end, { desc = "whichkey query lookup" })
-
 
 -- Original mappings
 -- Quit Normal mode
@@ -75,9 +72,6 @@ map("n", "<leader>sn", "<cmd>noautocmd w <CR>", opts)
 
 -- quit file
 map("n", "<C-q>", "<cmd> q <CR>", opts)
-
--- delete single character without copying into register
-map("n", "x", '"_x', opts)
 
 -- Vertical scroll and center
 map("n", "<C-d>", "<C-d>zz", opts)
@@ -112,7 +106,7 @@ map("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
 map("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
 
 -- Toggle line wrapping
-map("n", "<leader>lw", "<cmd wrap!<CR>", opts)
+map("n", "<C-l>", "<cmd>set wrap!<CR>", opts)
 
 -- Stay in indent mode
 map("v", "<", "<gv", opts)
@@ -133,11 +127,9 @@ map("", "<leader>cb", ":CMakeBuild<CR>", { desc = "CMake Build" })
 map("", "<leader>cq", ":CMakeClose<CR>", { desc = "CMake Close" })
 map("", "<leader>cc", ":CMakeClean<CR>", { desc = "CMake Clean" })
 
-map({"n", "i", "v"}, "<leader>tt",
-  function()
-    require("base46").toggle_transparency()
-  end)
+map({ "n", "i", "v" }, "<leader>tt", function()
+  require("base46").toggle_transparency()
+end)
 --
 -- Disable mappings
 -- local nomap = vim.keymap.del
-
