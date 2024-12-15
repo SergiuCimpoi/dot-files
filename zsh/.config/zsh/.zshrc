@@ -57,7 +57,7 @@ bindkey '^e' edit-command-line
 
 source ~/.local/share/zsh/plugins/fsh/fast-syntax-highlighting.plugin.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias ls='lsd --color=auto'
 alias grep='grep --color=auto'
