@@ -30,6 +30,8 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
+bindkey "\e[3~" delete-char
+bindkey -M vicmd "\e[3~" vi-delete-char
 
 function zle-keymap-select () {
     case $KEYMAP in
