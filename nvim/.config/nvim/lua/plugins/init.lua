@@ -9,7 +9,7 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       require("configs.lspconfig")
-    end,
+    end
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -43,8 +43,12 @@ return {
         ["<C-k>"] = require("telescope.actions").move_selection_previous,
         ["<Esc>"] = require("telescope.actions").close,
       }
-
-      return conf
+      conf.file_ignore_patterns = {
+        "build/", -- Ignore the build directory
+        ".clangd/", -- Ignore the clangd cache directory
+        "*/build/*", -- Ignore any build directories in subdirectories
+        "*/.clangd/*", -- Ignore clangd cache in subdirectories
+      }
     end,
   },
   {
@@ -67,7 +71,7 @@ return {
       dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
       end
-    end,
+    end
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -95,7 +99,7 @@ return {
       keymap("n", "<leader>db", dap.toggle_breakpoint, opts) -- Toggle breakpoint
       keymap("n", "<leader>dr", dap.repl.open, opts) -- Open REPL
       keymap("n", "<leader>dl", dap.run_last, opts) -- Run last debug session
-    end,
+    end
   },
   -- cmake-tools
   {
