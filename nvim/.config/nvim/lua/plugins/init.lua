@@ -13,47 +13,19 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-
-      highlight = {
-        enable = true,
-      },
-      -- enable indentation
-      indent = { enable = true },
-      -- enable autotagging (w/ nvim-ts-autotag plugin)
-      autotag = {
-        enable = true,
-      },
-      -- ensure these language parsers are installed
-      ensure_installed = {
-        "haskell",
-        "cpp",
-        "rust",
-        "zig",
-        "json",
-        "javascript",
-        "typescript",
-        "tsx",
-        "yaml",
-        "html",
-        "css",
-        "bash",
-        "lua",
-        "vim",
-        "gitignore",
-        "vimdoc",
-        "c",
-      },
-      incremental_selection = {
+    opts = function(_, conf)
+      print("hello from ass")
+      conf.incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<C-,>",
-          node_incremental = "<C-,>",
+          init_selection = "<A-,>",
+          node_incremental = "<A-,>",
           scope_incremental = false,
-          node_decremental = "<C-.>",
+          node_decremental = "<A-.>",
         },
-      },
-    },
+      }
+      return conf
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -174,6 +146,9 @@ return {
       local keymap = vim.keymap.set
       local opts = { noremap = true, silent = true }
       local dap = require("dap")
+
+      vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "", linehl = "", numhl = "" })
 
       keymap("n", "<F5>", dap.continue, opts) -- Start/continue debugging
       keymap("n", "<F10>", dap.step_over, opts) -- Step over

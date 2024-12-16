@@ -106,7 +106,7 @@ map("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
 map("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
 
 -- Toggle line wrapping
-map("n", "<C-l>", "<cmd>set wrap!<CR>", opts)
+map("n", "<C-wl>", "<cmd>set wrap!<CR>", opts)
 
 -- Stay in indent mode
 map("v", "<", "<gv", opts)
