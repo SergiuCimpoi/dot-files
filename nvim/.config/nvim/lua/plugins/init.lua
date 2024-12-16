@@ -14,7 +14,6 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, conf)
-      print("hello from ass")
       conf.incremental_selection = {
         enable = true,
         keymaps = {
@@ -154,7 +153,7 @@ return {
       keymap("n", "<F10>", dap.step_over, opts) -- Step over
       keymap("n", "<F11>", dap.step_into, opts) -- Step into
       keymap("n", "<F12>", dap.step_out, opts) -- Step out
-      keymap("n", "<leader>db", dap.toggle_breakpoint, opts) -- Toggle breakpoint
+      keymap("n", "<F8>", dap.toggle_breakpoint, opts) -- Toggle breakpoint
       keymap("n", "<leader>dr", dap.repl.open, opts) -- Open REPL
       keymap("n", "<leader>dl", dap.run_last, opts) -- Run last debug session
     end,
