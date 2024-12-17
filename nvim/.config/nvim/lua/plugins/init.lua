@@ -98,9 +98,9 @@ return {
         ["<Esc>"] = require("telescope.actions").close,
       }
       conf.file_ignore_patterns = {
-        "build/", -- Ignore the build directory
+        "out/", -- Ignore the build directory
         ".clangd/", -- Ignore the clangd cache directory
-        "*/build/*", -- Ignore any build directories in subdirectories
+        "*/out/*", -- Ignore any build directories in subdirectories
         "*/.clangd/*", -- Ignore clangd cache in subdirectories
       }
     end,
