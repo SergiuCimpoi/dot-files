@@ -73,7 +73,10 @@ pk() {
   pgrep -i "$1" | sudo xargs kill -9
 }
 
-cd ~
-neofetch 
-
+# cd ~
+# neofetch 
+if [[ -o interactive ]] && [[ -z "$TMUX" ]]; then
+    cd ~
+    neofetch
+fi
 eval "$(starship init zsh)"
