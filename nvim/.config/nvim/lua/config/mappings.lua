@@ -1,3 +1,15 @@
+vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "Move beginning of line" })
+vim.keymap.set("i", "<C-e>", "<End>", { desc = "Move end of line" })
+vim.keymap.set("i", "<C-h>", "<Left>", { desc = "Move left" })
+vim.keymap.set("i", "<C-l>", "<Right>", { desc = "Move right" })
+vim.keymap.set("i", "<C-j>", "<Down>", { desc = "Move down" })
+vim.keymap.set("i", "<C-k>", "<Up>", { desc = "Move up" })
+
+vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear highlights" })
+
+vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "General save file" })
+vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General copy whole file" })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -103,3 +115,7 @@ vim.keymap.set("", "<leader>cg", ":CMakeGenerate<CR>", { desc = "CMake Generate"
 vim.keymap.set("", "<leader>cb", ":CMakeBuild<CR>", { desc = "CMake Build" })
 vim.keymap.set("", "<leader>cq", ":CMakeClose<CR>", { desc = "CMake Close" })
 vim.keymap.set("", "<leader>cc", ":CMakeClean<CR>", { desc = "CMake Clean" })
+
+-- Obsession
+vim.keymap.set("n", "<Leader>ss", ":Obsession<CR>", { silent = true })
+vim.keymap.set("n", "<Leader>sp", ":Obsession!<CR>", { silent = true })

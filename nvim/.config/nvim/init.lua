@@ -64,9 +64,27 @@ vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
-
+vim.opt.cursorlineopt = "number"
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+vim.o.showmatch = true
+vim.o.matchtime = 3
+
+-- Folding
+-- vim.opt.fillchars = {
+--   fold = " ",
+--   eob = " ", -- suppress ~ at EndOfBuffer
+--   diff = "╱", -- alternatives = ⣿ ░ ─
+--   msgsep = "‾",
+--   foldopen = "",
+--   foldsep = "│",
+--   foldclose = "",
+-- }
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 -- Import mappings
 require("config.mappings")

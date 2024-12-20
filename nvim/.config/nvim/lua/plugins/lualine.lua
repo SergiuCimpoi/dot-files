@@ -36,7 +36,6 @@ return {
       symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
       cond = hide_in_width,
     }
-
     require("lualine").setup({
       options = {
         icons_enabled = true,
@@ -71,7 +70,13 @@ return {
         lualine_z = {},
       },
       tabline = {},
-      extensions = { "fugitive", "neo-tree" },
+      extensions = {
+        "fugitive",
+        "neo-tree",
+        "nvim-dap-ui",
+        "trouble",
+        "quickfix",
+      },
     })
   end,
 }
