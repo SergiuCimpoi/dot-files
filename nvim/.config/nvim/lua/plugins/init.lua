@@ -97,12 +97,6 @@ return {
         ["<C-k>"] = require("telescope.actions").move_selection_previous,
         ["<Esc>"] = require("telescope.actions").close,
       }
-      conf.file_ignore_patterns = {
-        "out/", -- Ignore the build directory
-        ".clangd/", -- Ignore the clangd cache directory
-        "*/out/*", -- Ignore any build directories in subdirectories
-        "*/.clangd/*", -- Ignore clangd cache in subdirectories
-      }
     end,
   },
   {
