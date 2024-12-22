@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -72,20 +72,35 @@ vim.o.showmatch = true
 vim.o.matchtime = 3
 
 -- Folding
--- vim.opt.fillchars = {
---   fold = " ",
---   eob = " ", -- suppress ~ at EndOfBuffer
---   diff = "╱", -- alternatives = ⣿ ░ ─
---   msgsep = "‾",
---   foldopen = "",
---   foldsep = "│",
---   foldclose = "",
--- }
-vim.o.foldcolumn = "1" -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+vim.opt.listchars = {
+  -- space = "⋅",
+  -- eol = "↴",
+  tab = "▎_",
+  -- tab = ">.",
+  trail = "•",
+  extends = "❯",
+  precedes = "❮",
+  nbsp = "",
+}
+vim.opt.fillchars = {
+  fold = " ",
+  foldsep = " ",
+  foldopen = "",
+  foldclose = "",
+  diff = "╱",
+}
+
+vim.opt.shortmess:append("W")
+vim.opt.shortmess:append("A")
+vim.opt.shortmess:append("F")
 
 -- Import mappings
 require("config.mappings")
+require("config.autocmds")
 require("config.lazy")

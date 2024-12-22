@@ -81,8 +81,8 @@ return { -- Autocompletion
       --
       -- No, but seriously. Please read `:help ins-completion`, it is really good!
       mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_next_item(),
-        ["<C-j>"] = cmp.mapping.select_prev_item(),
+        ["<C-j>"] = cmp.mapping.select_next_item(),
+        ["<C-k>"] = cmp.mapping.select_prev_item(),
 
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -91,20 +91,20 @@ return { -- Autocompletion
 
         ["<C-Space>"] = cmp.mapping.complete({}),
 
-        -- Think of <c-l> as moving to the right of your snippet expansion.
+        -- Think of <A-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
         --  function $name($args)
         --    $body
         --  end
         --
-        -- <c-l> will move you to the right of each of the expansion locations.
-        -- <c-h> is similar, except moving you backwards.
-        ["<C-l>"] = cmp.mapping(function()
+        -- <A-l> will move you to the right of each of the expansion locations.
+        -- <A-h> is similar, except moving you backwards.
+        ["<A-l>"] = cmp.mapping(function()
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           end
         end, { "i", "s" }),
-        ["<C-h>"] = cmp.mapping(function()
+        ["<A-h>"] = cmp.mapping(function()
           if luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           end

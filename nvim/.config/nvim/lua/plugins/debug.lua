@@ -96,6 +96,16 @@ return {
       --    Feel free to remove or use ones that you like more! :)
       --    Don't feel like these are good choices.
       icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
+      element_mappings = {
+        stacks = {
+          open = "<CR>", -- Pressing Enter will open the stack frame
+        },
+      },
+      mappings = {
+        open = "o", -- Open stack frame
+        toggle = "t", -- Toggle subtle frames
+        -- Add other mappings as needed
+      },
       controls = {
         icons = {
           pause = "⏸",
@@ -110,7 +120,18 @@ return {
         },
       },
     })
-
+    dap.adapters.codelldb = {
+      type = "server",
+      port = "${port}",
+      executable = {
+        command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+        args = { "--port", "${port}" },
+        initCommands = {
+          "settings set target.prefer-dynamic-values yes",
+          "settings set target.enable-synthetic-value true",
+        },
+      },
+    }
     dap.configurations.cpp = {
       {
         name = "Launch file",
@@ -119,7 +140,6 @@ return {
         program = function()
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
         end,
-        runInTerminal = true,
         console = "integratedTerminal",
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
