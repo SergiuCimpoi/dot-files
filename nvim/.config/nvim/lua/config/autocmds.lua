@@ -8,21 +8,21 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.hl.on_yank({ timeout = 150 })
   end,
 })
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "BufWinEnter" }, {
   group = group,
   pattern = "*",
   callback = function()
     vim.opt_local.formatoptions:remove("o")
   end,
 })
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "BufWinEnter" }, {
   group = group,
   pattern = "dapui_*",
   callback = function()
     vim.opt_local.spell = false
   end,
 })
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "BufWinEnter" }, {
   pattern = "dap-repl",
   callback = function(args)
     vim.api.nvim_set_option_value("buflisted", false, { buf = args.buf })
