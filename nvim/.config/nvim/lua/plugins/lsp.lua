@@ -46,7 +46,7 @@ return {
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
       vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+        group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
           -- NOTE: Remember that Lua is a real programming language, and as such it is possible
           -- to define small helper and utility functions so you don't have to repeat yourself.
@@ -62,7 +62,7 @@ return {
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
           map("gd", function()
-            require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
+            require("telescope.builtin").lsp_definitions(--[[{ jump_type = "tab" }]])
           end, "[G]oto [D]efinition")
 
           -- Find references for the word under your cursor.
