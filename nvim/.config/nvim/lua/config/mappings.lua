@@ -1,3 +1,5 @@
+local wk = require("which-key")
+
 vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "Move beginning of line" })
 vim.keymap.set("i", "<C-e>", "<End>", { desc = "Move end of line" })
 vim.keymap.set("i", "<C-h>", "<Left>", { desc = "Move left" })
@@ -59,14 +61,14 @@ vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", opts)
 -- Buffers
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
-vim.keymap.set("n", "<leader>bq", ":bdelete!<CR>", opts) -- close buffer
+vim.keymap.set("n", "<leader>bx", ":bdelete!<CR>", opts) -- close buffer
 vim.keymap.set("n", "<leader>bn", "<cmd> enew <CR>", opts) -- new buffer
 
 -- Window management
-vim.keymap.set("n", "<leader>v", "<C-w>v", opts) -- split window vertically
-vim.keymap.set("n", "<leader>h", "<C-w>s", opts) -- split window horizontally
+vim.keymap.set("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
+vim.keymap.set("n", "<leader>sh", "<C-w>s", opts) -- split window horizontally
 vim.keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
-vim.keymap.set("n", "<leader>sq", ":close<CR>", opts) -- close current split window
+vim.keymap.set("n", "<leader>sx", ":close<CR>", opts) -- close current split window
 
 -- Navigate between splits - managed by vim-tmux-navigator
 -- vim.keymap.set("n", "<C-k>", ":wincmd k<CR>", opts)
@@ -109,3 +111,6 @@ vim.keymap.set("", "<leader>cc", ":CMakeClean<CR>", { desc = "CMake Clean" })
 -- Obsession
 vim.keymap.set("n", "<Leader>ss", ":Obsession<CR>", { silent = true })
 vim.keymap.set("n", "<Leader>sp", ":Obsession!<CR>", { silent = true })
+
+-- Cpp
+vim.keymap.set("n", "<A-o>", ":ClangdSwitchSourceHeader<CR>", { desc = "Switch between header and Cpp files", noremap = true, silent = true })

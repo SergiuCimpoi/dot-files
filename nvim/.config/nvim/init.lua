@@ -101,6 +101,6 @@ vim.opt.shortmess:append("A")
 vim.opt.shortmess:append("F")
 
 -- Import mappings
+require("config.lazy")
 require("config.mappings")
 require("config.autocmds")
-require("config.lazy")
