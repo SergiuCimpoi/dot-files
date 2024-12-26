@@ -58,6 +58,7 @@ return {
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       local actions = require("telescope.actions")
+      local action_state = require("telescope.actions.state")
 
       require("telescope").setup({
         -- You can put your default mappings / updates / etc. in here
@@ -70,6 +71,30 @@ return {
               ["<c-enter>"] = "to_fuzzy_refine",
               ["<C-k>"] = actions.move_selection_previous, -- move to prev result
               ["<C-j>"] = actions.move_selection_next, -- move to next result
+              ["<CR>"] = function(prompt_bufnr)
+                local selection = action_state.get_selected_entry()
+                local filename = selection.filename or selection[1]
+                local bufnr = vim.fn.bufnr(filename)
+
+                if bufnr > 0 then
+                  -- Buffer exists, switch to it
+                  actions.close(prompt_bufnr)
+                  -- vim.api.nvim_set_current_buf(bufnr)
+                  -- Find the window containing the buffer
+                  local target_win = vim.fn.bufwinid(bufnr)
+
+                  if target_win ~= -1 then
+                    -- Buffer is visible in a window, switch to it
+                    vim.api.nvim_set_current_win(target_win)
+                  else
+                    -- Buffer is loaded but not visible, switch to it in the current window
+                    vim.api.nvim_set_current_buf(bufnr)
+                  end
+                else
+                  -- Buffer doesn't exist, use default action
+                  actions.select_default(prompt_bufnr)
+                end
+              end,
             },
           },
         },

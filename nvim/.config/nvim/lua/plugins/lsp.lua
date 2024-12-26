@@ -181,7 +181,6 @@ return {
         local result = {}
         for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
           local lua_path = path .. "/lua/"
-          print(lua_path)
           if vim.fn.isdirectory(lua_path) then
             result[lua_path] = true
           end
