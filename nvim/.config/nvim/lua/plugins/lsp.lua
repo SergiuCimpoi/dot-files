@@ -1,3 +1,35 @@
+local function custom_lsp_definitions()
+  local function on_list(options)
+    if #options.items == 1 then
+      -- If there's only one definition, jump to it directly
+      local item = options.items[1]
+      local filename = item.filename or vim.uri_to_fname(item.uri)
+      local bufnr = vim.fn.bufnr(filename)
+
+      if bufnr ~= -1 and vim.api.nvim_buf_is_loaded(bufnr) then
+        -- Buffer is already open, focus it
+        local win_id = vim.fn.bufwinid(bufnr)
+        if win_id ~= -1 then
+          vim.api.nvim_set_current_win(win_id)
+        else
+          vim.cmd("buffer " .. bufnr)
+        end
+      else
+        -- Buffer is not open, open it
+        vim.cmd("edit " .. filename)
+      end
+
+      -- Jump to the definition location
+      vim.api.nvim_win_set_cursor(0, { item.lnum, item.col - 1 })
+    else
+      -- If there are multiple definitions, show Telescope picker
+      require("telescope.builtin").lsp_definitions()
+    end
+  end
+
+  -- Call vim.lsp.buf.definition() with our custom handler
+  vim.lsp.buf.definition({ on_list = on_list })
+end
 return {
   {
     -- Main LSP Configuration
@@ -61,10 +93,7 @@ return {
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map("gd", function()
-            require("telescope.builtin").lsp_definitions(--[[{ jump_type = "tab" }]])
-          end, "[G]oto [D]efinition")
-
+          map("gd", custom_lsp_definitions, "[G]oto [D]efinition")
           -- Find references for the word under your cursor.
           map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
@@ -148,6 +177,21 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+      local function get_lua_runtime()
+        local result = {}
+        for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+          local lua_path = path .. "/lua/"
+          print(lua_path)
+          if vim.fn.isdirectory(lua_path) then
+            result[lua_path] = true
+          end
+        end
+        result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+        result[vim.fn.expand("~/dev/neovim/src/nvim/lua")] = true
+
+        return result
+      end
+
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -185,13 +229,16 @@ return {
               completion = {
                 callSnippet = "Replace",
               },
-              runtime = { version = "LuaJIT" },
+              runtime = {
+                version = "LuaJIT",
+                path = { "?.lua", "?/init.lua" },
+              },
               workspace = {
                 checkThirdParty = false,
-                library = {
-                  "${3rd}/luv/library",
-                  unpack(vim.api.nvim_get_runtime_file("", true)),
-                },
+                library = get_lua_runtime(),
+                ignoreDir = "~/.config/nvim/backups",
+                maxPreload = 10000,
+                preloadFileSize = 10000,
               },
               diagnostics = { disable = { "missing-fields" } },
               format = {
@@ -229,17 +276,17 @@ return {
       })
     end,
   },
-  {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
-    "folke/lazydev.nvim",
-    ft = "lua",
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "luvit-meta/library", words = { "vim%.uv" } },
-      },
-    },
-  },
-  { "Bilal2453/luvit-meta", lazy = true },
+  -- {
+  --   -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+  --   -- used for completion, annotations and signatures of Neovim apis
+  --   "folke/lazydev.nvim",
+  --   ft = "lua",
+  --   opts = {
+  --     library = {
+  --       -- Load luvit types when the `vim.uv` word is found
+  --       { path = "luvit-meta/library", words = { "vim%.uv" } },
+  --     },
+  --   },
+  -- },
+  -- { "Bilal2453/luvit-meta", lazy = true },
 }

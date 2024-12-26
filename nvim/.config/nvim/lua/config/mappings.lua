@@ -20,7 +20,7 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Disable the spacebar key's default behavior in Normal and Visual modes
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>", { silent = true })
 
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
@@ -53,8 +53,8 @@ vim.keymap.set("n", "n", "nzzzv", opts)
 vim.keymap.set("n", "N", "Nzzzv", opts)
 
 -- Resize with arrows
-vim.keymap.set("n", "<Up>", ":resize -2<CR>", opts)
-vim.keymap.set("n", "<Down>", ":resize +2<CR>", opts)
+vim.keymap.set("n", "<Up>", ":resize +2<CR>", opts)
+vim.keymap.set("n", "<Down>", ":resize -2<CR>", opts)
 vim.keymap.set("n", "<Left>", ":vertical resize -2<CR>", opts)
 vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", opts)
 
@@ -69,12 +69,6 @@ vim.keymap.set("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
 vim.keymap.set("n", "<leader>sh", "<C-w>s", opts) -- split window horizontally
 vim.keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
 vim.keymap.set("n", "<leader>sx", ":close<CR>", opts) -- close current split window
-
--- Navigate between splits - managed by vim-tmux-navigator
--- vim.keymap.set("n", "<C-k>", ":wincmd k<CR>", opts)
--- vim.keymap.set("n", "<C-j>", ":wincmd j<CR>", opts)
--- vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", opts)
--- vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", opts)
 
 -- Tabs
 vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
