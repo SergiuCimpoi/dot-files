@@ -205,12 +205,11 @@ return {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {
-          {
-            cmd = { "clangd", "--completion-style=detailed" },
-            on_attach = function()
-              vim.keymap.set("n", "<A-o>", "<CMD>ClangdSwitchSourceHeader<CR>", { buffer = 0 })
-            end,
-          },
+          cmd = { "clangd", "--completion-style=detailed" },
+          on_attach = function(_, bufnr)
+            vim.notify("LSP clangd attached")
+            vim.keymap.set("n", "<A-o>", "<CMD>ClangdSwitchSourceHeader<CR>", { buffer = bufnr })
+          end,
         },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
