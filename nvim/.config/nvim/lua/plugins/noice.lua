@@ -19,9 +19,12 @@ return {
         },
       },
       routes = {
+        -- { filter = { event = "msg_showmode" }, view = "notify" },
         { filter = { find = "E162" }, view = "mini" },
         { filter = { event = "msg_show", kind = "", find = "written" }, view = "mini" },
         { filter = { event = "msg_show", kind = "", find = "fewer" }, view = "mini" },
+        { filter = { event = "msg_show", kind = "", find = "<ed" }, view = "mini" },
+        { filter = { event = "msg_show", kind = "", find = ">ed" }, view = "mini" },
         { filter = { event = "msg_show", find = "search hit BOTTOM" }, skip = true },
         { filter = { event = "msg_show", find = "search hit TOP" }, skip = true },
         { filter = { event = "emsg", find = "E23" }, skip = true },

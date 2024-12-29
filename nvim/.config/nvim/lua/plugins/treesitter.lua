@@ -54,6 +54,15 @@ return {
           additional_vim_regex_highlighting = { "org" },
         },
         textobjects = {
+          lsp_interop = {
+            enable = true,
+            border = "none",
+            floating_preview_opts = {},
+            peek_definition_code = {
+              ["<leader>df"] = "@function.outer",
+              ["<leader>dF"] = "@class.outer",
+            },
+          },
           select = {
             enable = true,
             lookahead = true,

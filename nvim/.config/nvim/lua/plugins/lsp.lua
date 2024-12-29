@@ -1,3 +1,35 @@
+local function custom_lsp_definitions()
+  local function on_list(options)
+    if #options.items == 1 then
+      -- If there's only one definition, jump to it directly
+      local item = options.items[1]
+      local filename = item.filename or vim.uri_to_fname(item.uri)
+      local bufnr = vim.fn.bufnr(filename)
+
+      if bufnr ~= -1 and vim.api.nvim_buf_is_loaded(bufnr) then
+        -- Buffer is already open, focus it
+        local win_id = vim.fn.bufwinid(bufnr)
+        if win_id ~= -1 then
+          vim.api.nvim_set_current_win(win_id)
+        else
+          vim.cmd("buffer " .. bufnr)
+        end
+      else
+        -- Buffer is not open, open it
+        vim.cmd("edit " .. filename)
+      end
+
+      -- Jump to the definition location
+      vim.api.nvim_win_set_cursor(0, { item.lnum, item.col - 1 })
+    else
+      -- If there are multiple definitions, show Telescope picker
+      require("telescope.builtin").lsp_definitions()
+    end
+  end
+
+  -- Call vim.lsp.buf.definition() with our custom handler
+  vim.lsp.buf.definition({ on_list = on_list })
+end
 return {
   {
     -- Main LSP Configuration
@@ -78,6 +110,7 @@ return {
           map("<leader>D", require("fzf-lua").lsp_typedefs, "Type [D]efinition")
 
           -- Fuzzy find all the symbols in your current document.
+
           --  Symbols are things like variables, functions, types, etc.
           map("<leader>ds", require("fzf-lua").lsp_document_symbols, "[D]ocument [S]ymbols")
 
@@ -103,8 +136,9 @@ return {
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-            local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+          ---@diagnostic disable-next-line: missing-parameter, param-type-mismatch
+          if client and vim.lsp.protocol and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+            local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
               buffer = event.buf,
               group = highlight_augroup,
@@ -118,10 +152,10 @@ return {
             })
 
             vim.api.nvim_create_autocmd("LspDetach", {
-              group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+              group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
               callback = function(event2)
                 vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+                vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
               end,
             })
           end
@@ -130,7 +164,8 @@ return {
           -- code, if the language server you are using supports them
           --
           -- This may be unwanted, since they displace some of your code
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+          ---@diagnostic disable-next-line: missing-parameter, param-type-mismatch
+          if client and vim.lsp.protocol and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map("<leader>th", function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
             end, "[T]oggle Inlay [H]ints")
@@ -144,6 +179,20 @@ return {
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+      local function get_lua_runtime()
+        local result = {}
+        for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+          local lua_path = path .. "/lua/"
+          if vim.fn.isdirectory(lua_path) then
+            result[lua_path] = true
+          end
+        end
+        result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+        result[vim.fn.expand("~/dev/neovim/src/nvim/lua")] = true
+
+        return result
+      end
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -182,13 +231,16 @@ return {
               completion = {
                 callSnippet = "Replace",
               },
-              runtime = { version = "LuaJIT" },
+              runtime = {
+                version = "LuaJIT",
+                path = { "?.lua", "?/init.lua" },
+              },
               workspace = {
                 checkThirdParty = false,
-                library = {
-                  "${3rd}/luv/library",
-                  unpack(vim.api.nvim_get_runtime_file("", true)),
-                },
+                library = get_lua_runtime(),
+                ignoreDir = "~/.config/nvim/backups",
+                maxPreload = 10000,
+                preloadFileSize = 10000,
               },
               diagnostics = { disable = { "missing-fields" } },
               format = {
@@ -226,17 +278,17 @@ return {
       })
     end,
   },
-  {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
-    "folke/lazydev.nvim",
-    ft = "lua",
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "luvit-meta/library", words = { "vim%.uv" } },
-      },
-    },
-  },
-  { "Bilal2453/luvit-meta", lazy = true },
+  -- {
+  --   -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+  --   -- used for completion, annotations and signatures of Neovim apis
+  --   "folke/lazydev.nvim",
+  --   ft = "lua",
+  --   opts = {
+  --     library = {
+  --       -- Load luvit types when the `vim.uv` word is found
+  --       { path = "luvit-meta/library", words = { "vim%.uv" } },
+  --     },
+  --   },
+  -- },
+  -- { "Bilal2453/luvit-meta", lazy = true },
 }
