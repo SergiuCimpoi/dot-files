@@ -48,7 +48,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q'
 preexec() { echo -ne '\e[5 q' ;}
 
-bindkey -s '^a' 'bc -lq\n'
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 
@@ -56,18 +55,37 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 source ~/.local/share/zsh/plugins/fsh/fast-syntax-highlighting.plugin.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source <(fzf --zsh)
 
 alias ls='lsd --color=auto'
 alias grep='grep --color=auto'
 alias p="ping google.com"
-alias ll="lsd --long --group-dirs=first"
-alias lla="lsd --long --all --group-dirs=first"
-alias llt="lsd --tree --all"
+alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias lla="eza --color=always --long --group-directories-first --icons=always"
+alias llt="eza --color=always --tree --all"
 alias shell="vim $ZDOTDIR/.zshrc"
 alias profile="vim $HOME/.zprofile"
 # alias rm="trash"
+
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo $'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
+  esac
+}
+
 
 pk() {
   pgrep -i "$1" | sudo xargs kill -9
@@ -79,4 +97,5 @@ if [[ -o interactive ]] && [[ -z "$TMUX" ]]; then
     cd ~
     neofetch
 fi
+
 eval "$(starship init zsh)"
