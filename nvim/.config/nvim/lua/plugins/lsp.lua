@@ -1,3 +1,35 @@
+local function goto_definition()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local client = vim.lsp.get_clients({ bufnr = bufnr })[1]
+  if not client then
+    print("No active LSP client found")
+    return
+  end
+
+  local encoding = client.offset_encoding or "utf-16"
+  local params = vim.lsp.util.make_position_params(0, encoding)
+  vim.lsp.buf_request(0, "textDocument/definition", params, function(err, result)
+    if err then
+      print("Error fetching definitions: " .. err.message)
+      return
+    end
+
+    if not result or vim.tbl_isempty(result) then
+      print("No definitions found")
+      return
+    end
+
+    -- If there's only one definition, jump to it directly
+    if #result == 1 then
+      local def = result[1]
+      vim.lsp.util.show_document(def, encoding)
+    else
+      -- More than one definition, use fzf picker
+      require("fzf-lua").lsp_definitions()
+    end
+  end)
+end
+
 local function custom_lsp_definitions()
   local function on_list(options)
     if #options.items == 1 then
@@ -93,9 +125,11 @@ return {
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map("gd", function()
-            require("fzf-lua").lsp_definitions(--[[{ jump_type = "tab" }]])
-          end, "[G]oto [D]efinition")
+          -- map("gd", function()
+          --   require("fzf-lua").lsp_definitions(--[[{ jump_type = "tab" }]])
+          -- end, "[G]oto [D]efinition")
+
+          map("gd", goto_definition, "[G]oto [D]efinition")
 
           -- Find references for the word under your cursor.
           map("gr", require("fzf-lua").lsp_references, "[G]oto [R]eferences")
@@ -207,7 +241,6 @@ return {
         clangd = {
           cmd = { "clangd", "--completion-style=detailed" },
           on_attach = function(_, bufnr)
-            vim.notify("LSP clangd attached")
             vim.keymap.set("n", "<A-o>", "<CMD>ClangdSwitchSourceHeader<CR>", { buffer = bufnr })
           end,
         },
