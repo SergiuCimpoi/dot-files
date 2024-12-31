@@ -30,38 +30,6 @@ local function goto_definition()
   end)
 end
 
-local function custom_lsp_definitions()
-  local function on_list(options)
-    if #options.items == 1 then
-      -- If there's only one definition, jump to it directly
-      local item = options.items[1]
-      local filename = item.filename or vim.uri_to_fname(item.uri)
-      local bufnr = vim.fn.bufnr(filename)
-
-      if bufnr ~= -1 and vim.api.nvim_buf_is_loaded(bufnr) then
-        -- Buffer is already open, focus it
-        local win_id = vim.fn.bufwinid(bufnr)
-        if win_id ~= -1 then
-          vim.api.nvim_set_current_win(win_id)
-        else
-          vim.cmd("buffer " .. bufnr)
-        end
-      else
-        -- Buffer is not open, open it
-        vim.cmd("edit " .. filename)
-      end
-
-      -- Jump to the definition location
-      vim.api.nvim_win_set_cursor(0, { item.lnum, item.col - 1 })
-    else
-      -- If there are multiple definitions, show Telescope picker
-      require("telescope.builtin").lsp_definitions()
-    end
-  end
-
-  -- Call vim.lsp.buf.definition() with our custom handler
-  vim.lsp.buf.definition({ on_list = on_list })
-end
 return {
   {
     -- Main LSP Configuration
