@@ -36,7 +36,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
-     { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+      { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
 
@@ -158,7 +158,15 @@ return {
 
       local servers = {
         clangd = {
-          cmd = { "clangd", "--completion-style=detailed" },
+          cmd = {
+            "clangd",
+            "--clang-tidy",
+            "--clang-tidy-checks=*",
+            "--all-scopes-completion",
+            "--cross-file-rename",
+            "--completion-style=detailed",
+            "--header-insertion=iwyu",
+          },
           on_attach = function(_, bufnr)
             vim.keymap.set("n", "<A-o>", "<CMD>ClangdSwitchSourceHeader<CR>", { buffer = bufnr })
           end,
@@ -204,7 +212,7 @@ return {
 
       require("mason").setup()
       local ensure_installed = vim.tbl_keys(servers or {})
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       require("mason-lspconfig").setup({
         handlers = {
           function(server_name)

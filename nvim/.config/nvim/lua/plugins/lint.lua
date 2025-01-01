@@ -14,9 +14,13 @@ return {
       typescript = { "eslint_d" },
       javascriptreact = { "eslint_d" },
       typescriptreact = { "eslint_d" },
-      lua = { "luac" },
-      c = { "clangtidy" },
-      cpp = { "clangtidy" },
+      lua = { "luacheck" },
+      c = { "cpplint" },
+      cpp = { "cpplint" },
+    }
+
+    require("lint").linters.clang_tidy = {
+      cmd = "/usr/bin/clang-tidy",
     }
 
     require("mason-nvim-lint").setup()

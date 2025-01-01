@@ -21,6 +21,13 @@ return {
         markdown = { "prettier" },
         lua = { "stylua" },
         cpp = { "clang-format" },
+        xml = {
+          {
+            command = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/.bin/prettier",
+            args = { "--plugin=@prettier/plugin-xml", "--stdin-filepath", "$FILENAME" },
+            stdin = true,
+          },
+        },
       },
       format_on_save = {
         lsp_fallback = true,
