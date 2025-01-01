@@ -15,8 +15,8 @@ return {
       javascriptreact = { "eslint_d" },
       typescriptreact = { "eslint_d" },
       lua = { "luacheck" },
-      c = { "cpplint" },
-      cpp = { "cpplint" },
+      -- c = { "cpplint" },
+      -- cpp = { "cpplint" },
     }
 
     require("lint").linters.clang_tidy = {
