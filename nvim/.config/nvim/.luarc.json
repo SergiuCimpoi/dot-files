@@ -1,6 +1,4 @@
 {
-    "diagnostics.disable": [
-        "missing-fields"
-    ],
-    "completion.autoRequire": false
+  "diagnostics.disable": ["missing-fields"],
+  "completion.autoRequire": false
 }
