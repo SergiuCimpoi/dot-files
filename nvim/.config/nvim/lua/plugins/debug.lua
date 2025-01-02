@@ -67,6 +67,12 @@ return {
       end,
       desc = "Debug: See last session result.",
     },
+    {
+      -- Key mappings for evaluating expressions
+      "<Leader>dh",
+      "<cmd>lua require'dap.ui.widgets'.hover()<CR>",
+      "Evaluate expression",
+    },
   },
   config = function()
     local dap = require("dap")
