@@ -32,8 +32,8 @@ return { -- Autocompletion
     --  nvim-cmp does not ship with all sources by default. They are split
     --  into multiple repos for maintenance purposes.
     "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
+    -- "hrsh7th/cmp-buffer",
+    -- "hrsh7th/cmp-path",
   },
   config = function()
     -- See `:help cmp`
@@ -87,7 +87,7 @@ return { -- Autocompletion
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
         ["<C-Space>"] = cmp.mapping.complete({}),
 
