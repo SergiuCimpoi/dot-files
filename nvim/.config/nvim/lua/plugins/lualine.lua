@@ -75,6 +75,7 @@ return {
         "neo-tree",
         "nvim-dap-ui",
         "trouble",
+        "fzf",
         "quickfix",
       },
     })

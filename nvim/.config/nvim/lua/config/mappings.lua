@@ -1,5 +1,3 @@
-local wk = require("which-key")
-
 vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "Move beginning of line" })
 vim.keymap.set("i", "<C-e>", "<End>", { desc = "Move end of line" })
 vim.keymap.set("i", "<C-h>", "<Left>", { desc = "Move left" })
@@ -16,9 +14,6 @@ vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General copy whole file" 
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>", { silent = true })
 
@@ -26,11 +21,11 @@ vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>", { silent = true })
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
 -- For conciseness
 local opts = { noremap = true, silent = true }
+local opts_with_desc = function(desc)
+  return { noremap = true, silent = true, desc = desc }
+end
 
 -- save file
 vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", opts)
@@ -59,25 +54,26 @@ vim.keymap.set("n", "<Left>", ":vertical resize -2<CR>", opts)
 vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", opts)
 
 -- Buffers
-vim.keymap.set("n", "<leader><Tab>", ":bnext<CR>", opts)
-vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
-vim.keymap.set("n", "<leader>bx", ":bdelete!<CR>", opts) -- close buffer
-vim.keymap.set("n", "<leader>bn", "<cmd> enew <CR>", opts) -- new buffer
+vim.keymap.set("n", "<leader><Tab>", ":bnext<CR>", opts_with_desc("next buffer"))
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts_with_desc("previous buffer"))
+vim.keymap.set("n", "<leader>bx", ":bdelete!<CR>", opts_with_desc("[B]uffer e[X]it"))
+vim.keymap.set("n", "<leader>bn", "<cmd> enew <CR>", opts_with_desc("[B]uffer [N]ew"))
 
 -- Window management
-vim.keymap.set("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
-vim.keymap.set("n", "<leader>sh", "<C-w>s", opts) -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
-vim.keymap.set("n", "<leader>sx", ":close<CR>", opts) -- close current split window
+vim.keymap.set("n", "<leader>sv", "<C-w>v", opts_with_desc("[S]plit [V]ertically"))
+vim.keymap.set("n", "<leader>sh", "<C-w>s", opts_with_desc("[S]plit [H]orizontally"))
+vim.keymap.set("n", "<leader>se", "<C-w>=", opts_with_desc("[S]plits [E]qual"))
+vim.keymap.set("n", "<leader>sm", "<C-w>|<C-w>_", opts_with_desc("[S]plit [M]aximize"))
+vim.keymap.set("n", "<leader>sx", "<C-w>q", opts_with_desc("[S]plit e[X]it"))
 
 -- Tabs
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
-vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
+vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts_with_desc("[T]ab [O]pen"))
+vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", opts_with_desc("[T]ab e[X]it"))
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts_with_desc("[T]ab [N]ew"))
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts_with_desc("[T]ab [P]revious"))
 
 -- Toggle line wrapping
-vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
+vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts_with_desc("[L]ine [W]rap"))
 
 -- Stay in indent mode
 vim.keymap.set("v", "<", "<gv", opts)
@@ -93,11 +89,11 @@ end, { desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "]d", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Go to next diagnostic message" })
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating [D]iagnostic message" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- CMake
-vim.keymap.set("", "<leader>cg", ":CMakeGenerate<CR>", { desc = "CMake Generate" })
-vim.keymap.set("", "<leader>cb", ":CMakeBuild<CR>", { desc = "CMake Build" })
-vim.keymap.set("", "<leader>cq", ":CMakeClose<CR>", { desc = "CMake Close" })
-vim.keymap.set("", "<leader>cc", ":CMakeClean<CR>", { desc = "CMake Clean" })
+vim.keymap.set("", "<leader>cg", ":CMakeGenerate<CR>", opts_with_desc("[C]Make [G]enerate"))
+vim.keymap.set("", "<leader>cb", ":CMakeBuild<CR>", opts_with_desc("[C]Make [B]uild"))
+vim.keymap.set("", "<leader>cq", ":CMakeClose<CR>", opts_with_desc("[C]Make [C]lose"))
+vim.keymap.set("", "<leader>cc", ":CMakeClean<CR>", opts_with_desc("[C]Make [C]lean"))
