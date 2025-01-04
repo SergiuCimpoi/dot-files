@@ -70,6 +70,7 @@ return {
         },
       },
       files = {
+        no_header_i = true,
         cwd_prompt = false,
         actions = {
           ["alt-i"] = { actions.toggle_ignore },
@@ -77,6 +78,7 @@ return {
         },
       },
       grep = {
+        no_header_i = true,
         actions = {
           ["alt-i"] = { actions.toggle_ignore },
           ["alt-h"] = { actions.toggle_hidden },
