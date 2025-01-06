@@ -22,7 +22,10 @@ local function goto_definition()
     -- If there's only one definition, jump to it directly
     if #result == 1 then
       local def = result[1]
-      vim.lsp.util.show_document(def, encoding)
+      local success, error_msg = pcall(vim.lsp.util.show_document, def, encoding)
+      if not success then
+        print("Error showing document: " .. tostring(error_msg))
+      end
     else
       -- More than one definition, use fzf picker
       require("fzf-lua").lsp_definitions()
