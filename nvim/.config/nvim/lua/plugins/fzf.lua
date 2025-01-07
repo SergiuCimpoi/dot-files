@@ -152,5 +152,12 @@ return {
     { "<leader>fR", "<cmd>FzfLua resume<cr>", desc = "[F]ind [R]esume" },
     { "<leader>fq", "<cmd>FzfLua quickfix<cr>", desc = "[F]ind [Q]uickfix List" },
     { "<leader>fC", "<cmd>FzfLua colorschemes<cr>", desc = "[F]ind [C]olorscheme with Preview" },
+    {
+      "<leader>ft",
+      function()
+        require("fzf-lua").grep({ search = "TODO:|HACK:|PERF:|NOTE:|FIX:", no_esc = true })
+      end,
+      desc = "[F]ind [T]ODOs",
+    },
   },
 }
