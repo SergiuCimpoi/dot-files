@@ -107,3 +107,21 @@ vim.opt.shortmess:append("F")
 require("config.lazy")
 require("config.mappings")
 require("config.autocmds")
+
+local function is_wsl()
+  local uname_output = vim.fn.system("uname -r")
+  if uname_output:find("Microsoft") then
+    return true
+  elseif vim.fn.exists("$WSL_DISTRO_NAME") ~= 0 then
+    return true
+  else
+    return false
+  end
+end
+
+-- Check if running in WSL and print message
+if is_wsl() then
+  print("You are in WSL")
+else
+  print("You are in genuine Linux")
+end
