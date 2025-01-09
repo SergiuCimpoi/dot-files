@@ -2,7 +2,7 @@ return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  opts = function(_, opts)
+  opts = function(_, _)
     local config = require("fzf-lua.config")
     local actions = require("fzf-lua.actions")
 
@@ -26,6 +26,8 @@ return {
         ["--no-scrollbar"] = true,
       },
       defaults = {
+        file_icons = not WSL,
+        git_icons = not WSL,
         -- formatter = "path.filename_first",
         formatter = "path.dirname_first",
       },
@@ -66,6 +68,7 @@ return {
         row = 0.5,
         col = 0.5,
         preview = {
+          -- default = "bat",
           scrollchars = { "┃", "" },
         },
       },

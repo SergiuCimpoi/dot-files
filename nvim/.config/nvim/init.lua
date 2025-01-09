@@ -120,8 +120,4 @@ local function is_wsl()
 end
 
 -- Check if running in WSL and print message
-if is_wsl() then
-  print("You are in WSL")
-else
-  print("You are in genuine Linux")
-end
+WSL = is_wsl()
