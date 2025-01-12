@@ -70,7 +70,7 @@ alias profile="vim $HOME/.zprofile"
 
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --bind 'ctrl-y:execute-silent(echo -n {} | wl-copy)'"
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
 # - You should make sure to pass the rest of the arguments to fzf.
@@ -86,10 +86,15 @@ _fzf_comprun() {
   esac
 }
 
-
-pk() {
-  pgrep -i "$1" | sudo xargs kill -9
+fzf-copy() {
+  local selected
+  selected=$(fzf)
+  if [[ -n "$selected" ]]; then
+    echo -n "$selected" | wl-copy
+    print -P "%F{green}Copied to clipboard:%f $selected"
+  fi
 }
+bindkey -s '^Y' 'fzf-copy\n'
 
 # cd ~
 # neofetch 
