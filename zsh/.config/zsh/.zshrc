@@ -1,4 +1,3 @@
-
 autoload -U colors && colors
 setopt autocd
 setopt interactive_comments
