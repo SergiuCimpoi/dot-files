@@ -24,9 +24,12 @@ return {
       fzf_colors = true,
       fzf_opts = {
         ["--no-scrollbar"] = true,
+        ["--walker-skip"] = "node_modules,.git",
       },
       defaults = {
         -- formatter = "path.filename_first",
+        file_icons = false,
+        git_icons = false,
         formatter = "path.dirname_first",
       },
       -- Custom LazyVim option to configure vim.ui.select
