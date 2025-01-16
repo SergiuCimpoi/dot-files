@@ -3,7 +3,6 @@ return {
   "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
   { "stevearc/dressing.nvim", event = "VeryLazy" },
   { "folke/todo-comments.nvim", event = "VimEnter", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
-  "ThePrimeagen/vim-be-good",
   {
     "xiyaowong/transparent.nvim",
     config = function()
@@ -29,7 +28,6 @@ return {
           "LineNr",
           "NonText",
           "SignColumn",
-          "CursorLine",
           "CursorLineNr",
           "StatusLine",
           "StatusLineNC",
@@ -48,5 +46,10 @@ return {
         exclude_groups = {}, -- groups you don't want to clear
       })
     end,
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
 }

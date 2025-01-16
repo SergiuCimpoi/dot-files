@@ -1,4 +1,3 @@
-
 autoload -U colors && colors
 setopt autocd
 setopt interactive_comments
@@ -62,7 +61,7 @@ alias ls='lsd --color=auto'
 alias grep='grep --color=auto'
 alias p="ping google.com"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
-alias lla="eza --color=always --long --group-directories-first --icons=always"
+alias lla="eza --color=always --all --long --group-directories-first --icons=always"
 alias llt="eza --color=always --tree --all"
 alias shell="vim $ZDOTDIR/.zshrc"
 alias profile="vim $HOME/.zprofile"
