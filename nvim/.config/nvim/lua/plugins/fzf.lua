@@ -26,10 +26,7 @@ return {
         ["--no-scrollbar"] = true,
       },
       defaults = {
-        file_icons = not WSL,
-        git_icons = not WSL,
-        -- formatter = "path.filename_first",
-        formatter = "path.dirname_first",
+        formatter = "path.filename_first",
       },
       -- Custom LazyVim option to configure vim.ui.select
       ui_select = function(fzf_opts, items)
