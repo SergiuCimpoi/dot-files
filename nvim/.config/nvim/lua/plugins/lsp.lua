@@ -22,10 +22,30 @@ local function goto_definition()
     -- If there's only one definition, jump to it directly
     if #result == 1 then
       local def = result[1]
-      local success, error_msg = pcall(vim.lsp.util.show_document, def, encoding)
-      if not success then
-        print("Error showing document: " .. tostring(error_msg))
+      local uri = def.uri or def.targetUri
+      local range = def.range or def.targetRange
+
+      -- Convert URI to buffer number
+      local target_bufnr = vim.uri_to_bufnr(uri)
+
+      -- Check if the buffer is already open in a window
+      local win_id = vim.fn.bufwinid(target_bufnr)
+
+      if win_id ~= -1 then
+        -- Buffer is visible, switch to its window
+        vim.api.nvim_set_current_win(win_id)
+      else
+        -- Buffer is not visible, open it in the current window
+        vim.api.nvim_command("buffer " .. target_bufnr)
       end
+
+      -- Move cursor to the definition location
+      vim.api.nvim_win_set_cursor(0, { range.start.line + 1, range.start.character })
+      -- local def = result[1]
+      -- local success, error_msg = pcall(vim.lsp.util.show_document, def, encoding)
+      -- if not success then
+      --   print("Error showing document: " .. tostring(error_msg))
+      -- end
     else
       -- More than one definition, use fzf picker
       require("fzf-lua").lsp_definitions()
