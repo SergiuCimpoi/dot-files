@@ -56,8 +56,19 @@ vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", opts)
 -- Buffers
 vim.keymap.set("n", "<leader><Tab>", ":bnext<CR>", opts_with_desc("next buffer"))
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts_with_desc("previous buffer"))
-vim.keymap.set("n", "<leader>bx", ":bdelete!<CR>", opts_with_desc("[B]uffer e[X]it"))
-vim.keymap.set("n", "<leader>bn", "<cmd> enew <CR>", opts_with_desc("[B]uffer [N]ew"))
+vim.keymap.set("n", "<leader>bx", function()
+  local current_buf = vim.api.nvim_get_current_buf()
+  local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+
+  if #buffers > 1 then
+    -- If there are other buffers available, switch to another buffer first
+    vim.cmd("bnext") -- Go to the next buffer
+    vim.cmd("bdelete " .. current_buf) -- Delete the previous buffer
+  else
+    -- If this is the last buffer, just delete it (and close the window)
+    vim.cmd("bdelete!")
+  end
+end, { desc = "[B]uffer e[X]it (preserve split)" })
 
 -- Window management
 vim.keymap.set("n", "<leader>sv", "<C-w>v", opts_with_desc("[S]plit [V]ertically"))
