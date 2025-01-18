@@ -28,6 +28,14 @@ local function goto_definition()
       -- Convert URI to buffer number
       local target_bufnr = vim.uri_to_bufnr(uri)
 
+      -- Load the buffer if it's not already loaded
+      if not vim.api.nvim_buf_is_loaded(target_bufnr) then
+        vim.fn.bufload(target_bufnr)
+      end
+
+      -- Ensure the buffer is listed
+      vim.api.nvim_buf_set_option(target_bufnr, "buflisted", true)
+
       -- Check if the buffer is already open in a window
       local win_id = vim.fn.bufwinid(target_bufnr)
 
@@ -41,18 +49,15 @@ local function goto_definition()
 
       -- Move cursor to the definition location
       vim.api.nvim_win_set_cursor(0, { range.start.line + 1, range.start.character })
-      -- local def = result[1]
-      -- local success, error_msg = pcall(vim.lsp.util.show_document, def, encoding)
-      -- if not success then
-      --   print("Error showing document: " .. tostring(error_msg))
-      -- end
     else
-      -- More than one definition, use fzf picker
+      -- More than one definition, use fzf picker (or any other UI picker you prefer)
       require("fzf-lua").lsp_definitions()
     end
   end)
 end
 
+-- Optionally bind this function to a key mapping
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua goto_definition()<CR>", { noremap = true, silent = true })
 return {
   {
     -- Main LSP Configuration
