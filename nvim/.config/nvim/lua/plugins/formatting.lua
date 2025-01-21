@@ -10,15 +10,15 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        javascript = { "prettier" },
-        typescript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescriptreact = { "prettier" },
-        css = { "prettier" },
-        html = { "prettier" },
-        json = { "prettier" },
-        yaml = { "prettier" },
-        markdown = { "prettier" },
+        javascript = { "prettierd" },
+        typescript = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        css = { "prettierd" },
+        html = { "prettierd" },
+        json = { "prettierd" },
+        yaml = { "prettierd" },
+        markdown = { "prettierd" },
         lua = { "stylua" },
         cpp = { "clang-format" },
         xml = {
@@ -26,6 +26,13 @@ return {
             command = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/.bin/prettier",
             args = { "--plugin=@prettier/plugin-xml", "--stdin-filepath", "$FILENAME" },
             stdin = true,
+          },
+        },
+        formatters = {
+          prettierd = {
+            condition = function()
+              return vim.fs.normalize(".prettierrc.js") ~= nil or vim.fs.normalize(".prettierrc.mjs") ~= nil
+            end,
           },
         },
       },

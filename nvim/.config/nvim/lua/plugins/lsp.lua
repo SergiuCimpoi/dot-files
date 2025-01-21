@@ -34,7 +34,7 @@ local function goto_definition()
       end
 
       -- Ensure the buffer is listed
-      vim.api.nvim_buf_set_option(target_bufnr, "buflisted", true)
+      vim.api.nvim_set_option_value("buflisted", true, { buf = target_bufnr })
 
       -- Check if the buffer is already open in a window
       local win_id = vim.fn.bufwinid(target_bufnr)
@@ -197,6 +197,18 @@ return {
           },
           on_attach = function(_, bufnr)
             vim.keymap.set("n", "<A-o>", "<CMD>ClangdSwitchSourceHeader<CR>", { buffer = bufnr })
+          end,
+        },
+        eslint = {
+          settings = {
+            packageManager = "pnpm",
+          },
+          ---@diagnostic disable-next-line: unused-local
+          on_attach = function(client, bufnr)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = bufnr,
+              command = "EslintFixAll",
+            })
           end,
         },
         -- rust_analyzer = {},
