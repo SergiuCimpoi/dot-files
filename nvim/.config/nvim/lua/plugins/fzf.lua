@@ -27,6 +27,8 @@ return {
       },
       defaults = {
         formatter = "path.filename_first",
+        file_icons = not WSL,
+        git_icons = not WSL,
       },
       -- Custom LazyVim option to configure vim.ui.select
       ui_select = function(fzf_opts, items)
