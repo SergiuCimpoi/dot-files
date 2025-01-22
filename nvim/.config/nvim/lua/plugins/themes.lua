@@ -5,9 +5,28 @@ return {
 
   config = function()
     require("themify").setup({
-      -- Your list of colorschemes.
-
-      "folke/tokyonight.nvim",
+      {
+        "folke/tokyonight.nvim",
+        before = function()
+          vim.cmd("highlight LineNr guifg=#5D6885 gui=bold")
+          require("tokyonight").setup({
+            on_colors = function(colors)
+              -- colors.fg_gutter = "#4C5573"
+            end,
+            on_highlights = function(highlights, colors)
+              highlights.LineNr = {
+                fg = "#6e7bb7",
+              }
+              highlights.LineNrAbove = {
+                fg = "#6e7bb7",
+              }
+              highlights.LineNrBelow = {
+                fg = "#6e7bb7",
+              }
+            end,
+          })
+        end,
+      },
       "Yazeed1s/minimal.nvim",
       "catppuccin/nvim",
       {
