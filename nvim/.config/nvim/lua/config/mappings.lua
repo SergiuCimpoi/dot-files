@@ -80,7 +80,7 @@ vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
 
 -- Keep last yanked when pasting
-vim.keymap.set("v", "p", "\"_dP", opts)
+-- vim.keymap.set("v", "p", "\"_dP", opts)
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", function()
