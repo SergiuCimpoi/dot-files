@@ -15,13 +15,13 @@ return {
             end,
             on_highlights = function(highlights, colors)
               highlights.LineNr = {
-                fg = "#6e7bb7",
+                fg = "#5d689a",
               }
               highlights.LineNrAbove = {
-                fg = "#6e7bb7",
+                fg = "#5d689a",
               }
               highlights.LineNrBelow = {
-                fg = "#6e7bb7",
+                fg = "#5d689a",
               }
             end,
           })
