@@ -2,7 +2,7 @@ return {
   adapter = {
     type = "executable",
     command = "gdb",
-    args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+    args = { "--interpreter=dap", "--quiet", "--eval-command", "set print pretty on" },
   },
   config = {
     {
@@ -12,6 +12,7 @@ return {
       program = function()
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
       end,
+      console = "integratedTerminal",
       cwd = "${workspaceFolder}",
       stopAtBeginningOfMainSubprogram = false,
     },
@@ -26,6 +27,7 @@ return {
         local name = vim.fn.input("Executable name (filter): ")
         return require("dap.utils").pick_process({ filter = name })
       end,
+      console = "integratedTerminal",
       cwd = "${workspaceFolder}",
     },
     {
@@ -36,6 +38,7 @@ return {
       program = function()
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
       end,
+      console = "integratedTerminal",
       cwd = "${workspaceFolder}",
     },
   },

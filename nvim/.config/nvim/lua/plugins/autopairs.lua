@@ -4,7 +4,11 @@ return {
   -- Optional dependency
   dependencies = { "hrsh7th/nvim-cmp" },
   config = function()
-    require("nvim-autopairs").setup({})
+    local npairs = require("nvim-autopairs")
+    local nrule = require("nvim-autopairs.rule")
+    local ncond = require("nvim-autopairs.conds")
+    npairs.setup({})
+    npairs.add_rule(nrule("<", ">", { "rust", "cpp" }):with_pair(ncond.not_before_regex_check(" ")))
     -- If you want to automatically add `(` after selecting a function or method
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
     local cmp = require("cmp")
