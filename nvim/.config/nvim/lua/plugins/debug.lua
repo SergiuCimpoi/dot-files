@@ -22,56 +22,61 @@ return {
       function()
         require("dap").continue()
       end,
-      desc = "Debug: Start/Continue",
+      desc = "DAP Start/Continue",
     },
     {
       "<F11>",
       function()
         require("dap").step_into()
       end,
-      desc = "Debug: Step Into",
+      desc = "DAP Step Into",
     },
     {
       "<F10>",
       function()
         require("dap").step_over()
       end,
-      desc = "Debug: Step Over",
+      desc = "DAP Step Over",
     },
     {
       "<F12>",
       function()
         require("dap").step_out()
       end,
-      desc = "Debug: Step Out",
+      desc = "DAP Step Out",
     },
     {
       "<F8>",
       function()
         require("dap").toggle_breakpoint()
       end,
-      desc = "Debug: Toggle Breakpoint",
+      desc = "DAP Toggle Breakpoint",
     },
     {
       "<F9>",
       function()
         require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
       end,
-      desc = "Debug: Set Breakpoint",
+      desc = "DAP Set Conditional Breakpoint",
     },
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {
-      "<F7>",
+      "<F3>",
       function()
         require("dapui").toggle()
       end,
-      desc = "Debug: See last session result.",
+      desc = "DAP toggle",
     },
     {
       -- Key mappings for evaluating expressions
       "<Leader>dh",
       "<cmd>lua require'dap.ui.widgets'.hover()<CR>",
-      "Evaluate expression",
+      desc = "DAP Evaluate expression",
+    },
+    {
+      "<F4>",
+      "<cmd>lua require('dap').terminate()<CR>",
+      desc = "DAP terminate",
     },
   },
   config = function()
@@ -86,7 +91,29 @@ return {
     })
 
     dapui.setup({
-      icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
+      layouts = {
+        -- Changing the layout order will give more space to the first element
+        {
+          -- You can change the order of elements in the sidebar
+          elements = {
+            -- { id = "scopes", size = 0.25, },
+            { id = "stacks", size = 0.50 },
+            { id = "breakpoints", size = 0.25 },
+            { id = "watches", size = 0.25 },
+          },
+          size = 56,
+          position = "right", -- Can be "left" or "right"
+        },
+        {
+          elements = {
+            { id = "repl", size = 0.60 },
+            { id = "console", size = 0.40 },
+          },
+          size = 8,
+          position = "bottom", -- Can be "bottom" or "top"
+        },
+      },
+      -- icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
       element_mappings = {
         stacks = {
           open = "<CR>", -- Pressing Enter will open the stack frame
@@ -96,19 +123,6 @@ return {
         open = "o", -- Open stack frame
         toggle = "t", -- Toggle subtle frames
         -- Add other mappings as needed
-      },
-      controls = {
-        icons = {
-          pause = "⏸",
-          play = "▶",
-          step_into = "⏎",
-          step_over = "⏭",
-          step_out = "⏮",
-          step_back = "b",
-          run_last = "▶▶",
-          terminate = "⏹",
-          disconnect = "⏏",
-        },
       },
     })
 
