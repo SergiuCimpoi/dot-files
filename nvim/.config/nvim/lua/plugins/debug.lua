@@ -111,31 +111,38 @@ return {
         },
       },
     })
-    dap.adapters.codelldb = {
-      type = "server",
-      port = "${port}",
-      executable = {
-        command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
-        args = { "--port", "${port}" },
-        initCommands = {
-          "settings set target.prefer-dynamic-values yes",
-          "settings set target.enable-synthetic-value true",
-        },
-      },
-    }
-    dap.configurations.cpp = {
-      {
-        name = "Launch file",
-        type = "codelldb",
-        request = "launch",
-        program = function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-        end,
-        console = "integratedTerminal",
-        cwd = "${workspaceFolder}",
-        stopOnEntry = false,
-      },
-    }
+    -- dap.adapters.codelldb = {
+    --   type = "server",
+    --   port = "${port}",
+    --   executable = {
+    --     command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+    --     args = { "--port", "${port}" },
+    --     initCommands = {
+    --       "settings set target.prefer-dynamic-values yes",
+    --       "settings set target.enable-synthetic-value true",
+    --     },
+    --   },
+    -- }
+    -- dap.configurations.cpp = {
+    --   {
+    --     name = "Launch file",
+    --     type = "codelldb",
+    --     request = "launch",
+    --     program = function()
+    --       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    --     end,
+    --     console = "integratedTerminal",
+    --     cwd = "${workspaceFolder}",
+    --     stopOnEntry = false,
+    --   },
+    -- }
+
+    -- debuggers
+    local gdb = require("config.debug.gdb")
+
+    dap.adapters.gdb = gdb.adapter
+    dap.configurations.c = gdb.config
+    dap.configurations.cpp = gdb.config
 
     vim.api.nvim_set_hl(0, "DapBreak", { fg = "#e51400" })
     vim.api.nvim_set_hl(0, "DapStop", { fg = "#ffcc00" })
