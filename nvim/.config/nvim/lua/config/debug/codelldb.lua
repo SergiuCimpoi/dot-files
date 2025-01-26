@@ -5,10 +5,10 @@ return {
     executable = {
       command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
       args = { "--port", "${port}" },
-      initCommands = {
-        "settings set target.prefer-dynamic-values yes",
-        "settings set target.enable-synthetic-value true",
-      },
+      -- initCommands = {
+      --   "settings set target.prefer-dynamic-values yes",
+      --   "settings set target.enable-synthetic-value true",
+      -- },
     },
   },
   config = {

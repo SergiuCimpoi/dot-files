@@ -96,10 +96,9 @@ return {
         {
           -- You can change the order of elements in the sidebar
           elements = {
-            -- { id = "scopes", size = 0.25, },
-            { id = "stacks", size = 0.50 },
-            { id = "breakpoints", size = 0.25 },
-            { id = "watches", size = 0.25 },
+            { id = "scopes", size = 0.60 },
+            { id = "stacks", size = 0.20 },
+            { id = "breakpoints", size = 0.20 },
           },
           size = 56,
           position = "right", -- Can be "left" or "right"
@@ -107,7 +106,8 @@ return {
         {
           elements = {
             { id = "repl", size = 0.60 },
-            { id = "console", size = 0.40 },
+            { id = "watches", size = 0.40 },
+            -- { id = "console", size = 0.40 },
           },
           size = 8,
           position = "bottom", -- Can be "bottom" or "top"
@@ -127,11 +127,14 @@ return {
     })
 
     -- debuggers
-    local gdb = require("config.debug.gdb")
+    -- local dbg = require("config.debug.lldb")
+    -- local dbg = require("config.debug.gdb")
+    local dbg = require("config.debug.lldb-dap")
 
-    dap.adapters.gdb = gdb.adapter
-    dap.configurations.c = gdb.config
-    dap.configurations.cpp = gdb.config
+    dap.adapters.lldb = dbg.adapter
+    -- dap.adapters.gdb = dbg.adapter
+    dap.configurations.c = dbg.config
+    dap.configurations.cpp = dbg.config
 
     vim.api.nvim_set_hl(0, "DapBreak", { fg = "#e51400" })
     vim.api.nvim_set_hl(0, "DapStop", { fg = "#ffcc00" })
