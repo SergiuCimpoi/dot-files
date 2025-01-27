@@ -127,12 +127,12 @@ return {
     })
 
     -- debuggers
-    -- local dbg = require("config.debug.lldb")
+    local dbg = require("config.debug.lldb")
     -- local dbg = require("config.debug.gdb")
-    local dbg = require("config.debug.lldb-dap")
+    -- local dbg = require("config.debug.lldb-dap")
 
-    dap.adapters.lldb = dbg.adapter
-    -- dap.adapters.gdb = dbg.adapter
+    -- dap.adapters.lldb = dbg.adapter
+    dap.adapters.gdb = dbg.adapter
     dap.configurations.c = dbg.config
     dap.configurations.cpp = dbg.config
 
