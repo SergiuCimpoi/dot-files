@@ -102,6 +102,7 @@ vim.opt.fillchars = {
   foldopen = "",
   foldclose = "",
   diff = "╱",
+  eob = " ",
 }
 
 vim.opt.shortmess:append("W")
