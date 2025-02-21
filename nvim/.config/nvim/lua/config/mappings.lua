@@ -55,7 +55,7 @@ vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", opts)
 
 -- Buffers
 vim.keymap.set("n", "<leader><Tab>", ":bnext<CR>", opts_with_desc("next buffer"))
-vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts_with_desc("previous buffer"))
+vim.keymap.set("n", "<leader><S-Tab>", ":bprevious<CR>", opts_with_desc("previous buffer"))
 vim.keymap.set("n", "<leader>bx", function()
   local current_buf = vim.api.nvim_get_current_buf()
   local buffers = vim.fn.getbufinfo({ buflisted = 1 })
@@ -91,7 +91,7 @@ vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
 
 -- Keep last yanked when pasting
--- vim.keymap.set("v", "p", "\"_dP", opts)
+vim.keymap.set("v", "p", "\"_dP", opts)
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", function()

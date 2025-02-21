@@ -1,3 +1,7 @@
+local function is_recording_macro()
+  return vim.fn.reg_recording() ~= ""
+end
+
 return {
   "christoomey/vim-tmux-navigator",
   "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
@@ -72,6 +76,18 @@ return {
         char = {
           jump_labels = true,
           multi_line = false,
+          config = function()
+            return {
+              confirm_key = vim.g.mapleader,
+            }
+          end,
+        },
+        search = {
+          config = function()
+            return {
+              confirm_key = vim.g.mapleader,
+            }
+          end,
         },
       },
     },
