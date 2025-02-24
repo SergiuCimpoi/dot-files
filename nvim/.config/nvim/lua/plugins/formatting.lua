@@ -33,13 +33,6 @@ return {
             end,
           },
         },
-        formatters = {
-          prettierd = {
-            condition = function()
-              return vim.fs.normalize(".prettierrc.js") ~= nil or vim.fs.normalize(".prettierrc.mjs") ~= nil
-            end,
-          },
-        },
       },
       format_on_save = {
         lsp_fallback = true,
