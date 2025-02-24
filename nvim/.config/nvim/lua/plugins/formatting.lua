@@ -21,17 +21,23 @@ return {
         markdown = { "prettierd", stop_after_first = true },
         lua = { "stylua", stop_after_first = true },
         cpp = { "clang-format", stop_after_first = true },
-        xml = {
-          command = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/.bin/prettier",
-          args = { "--plugin=@prettier/plugin-xml", "--stdin-filepath", "$FILENAME" },
-          stdin = true,
-        },
+        xml = { "xmllint", stop_after_first = true },
         formatters = {
           prettierd = {
             condition = function()
               return vim.fs.normalize(".prettierrc.js") ~= nil or vim.fs.normalize(".prettierrc.mjs") ~= nil
             end,
           },
+          xmllint = {
+            command = "xmllint",
+            args = { "--format", "-" },
+          },
+          -- prettier = {
+          --   command = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/.bin/prettier",
+          --   prepend_args = { "--plugin=@prettier/plugin-xml" },
+          --   -- args = { "--plugin=@prettier/plugin-xml", "--stdin-filepath", "$FILENAME" },
+          --   stdin = true,
+          -- },
         },
       },
       format_on_save = {
