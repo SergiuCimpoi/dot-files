@@ -32,12 +32,6 @@ return {
             command = "xmllint",
             args = { "--format", "-" },
           },
-          -- prettier = {
-          --   command = vim.fn.stdpath("data") .. "/mason/packages/prettier/node_modules/.bin/prettier",
-          --   prepend_args = { "--plugin=@prettier/plugin-xml" },
-          --   -- args = { "--plugin=@prettier/plugin-xml", "--stdin-filepath", "$FILENAME" },
-          --   stdin = true,
-          -- },
         },
       },
       format_on_save = {
