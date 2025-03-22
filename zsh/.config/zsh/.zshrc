@@ -2,6 +2,8 @@ autoload -U colors && colors
 setopt autocd
 setopt interactive_comments
 
+path+=('/home/srj/.local/share/bob/nvim-bin')
+
 export HISTSIZE=268435456
 export SAVEHIST="$HISTSIZE"
 export HISTFILE="$ZDOTDIR/.zsh_history"

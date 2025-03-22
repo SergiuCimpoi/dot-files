@@ -9,6 +9,8 @@ return {
         client.server_capabilities.documentRangeFormattingProvider = false
       end,
       settings = {
+        tsserver_logs = "verbose", -- Enable detailed logging
+        expose_as_code_action = "all",
         jsx_close_tag = {
           enable = true,
           filetypes = { "javascriptreact", "typescriptreact" },
