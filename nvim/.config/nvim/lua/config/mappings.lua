@@ -1,4 +1,13 @@
+local function yank_buffer_path()
+  local full_path = vim.api.nvim_buf_get_name(0) -- Get the full path of the current buffer
+  vim.fn.setreg("+", full_path) -- Yank to the system clipboard (register '+')
+  print("Yanked buffer path: " .. full_path) -- Optional: Display the yanked path
+end
+
+vim.keymap.set("n", "<leader>yp", yank_buffer_path, { noremap = true, silent = true })
+
 vim.keymap.set("i", "<C-b>", "<ESC>^i", { desc = "Move beginning of line" })
+
 vim.keymap.set("i", "<C-e>", "<End>", { desc = "Move end of line" })
 vim.keymap.set("i", "<C-h>", "<Left>", { desc = "Move left" })
 vim.keymap.set("i", "<C-l>", "<Right>", { desc = "Move right" })
