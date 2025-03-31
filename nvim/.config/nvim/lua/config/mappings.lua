@@ -36,9 +36,6 @@ local opts_with_desc = function(desc)
   return { noremap = true, silent = true, desc = desc }
 end
 
--- save file
-vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", opts)
-
 -- save file without auto-formatting
 vim.keymap.set("n", "<leader>sn", "<cmd>noautocmd w <CR>", opts)
 

@@ -1,5 +1,4 @@
 vim.diagnostic.config({
-  -- Limit length
   open_float = {
     width = 80,
   },
@@ -11,13 +10,16 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.HINT] = "󰌶 ",
     },
   },
-  -- Enable border
   float = {
     style = "minimal",
     border = "rounded",
     source = true,
     header = "",
     prefix = "",
+  },
+  virtual_text = false,
+  virtual_lines = {
+    current_line = true,
   },
   severity_sort = true,
 })
