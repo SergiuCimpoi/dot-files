@@ -240,6 +240,26 @@ return {
             },
           },
         },
+        -- hls = {
+        --   filetypes = { "haskell", "lhaskell", "cabal" }, -- Supported filetypes
+        --   on_attach = function(client, bufnr)
+        --     -- local opts = { noremap = true, silent = true, buffer = bufnr }
+        --     -- -- Keymaps for LSP functionality
+        --     -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- Go to definition
+        --     -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- Hover documentation
+        --     -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts) -- Go to implementation
+        --     -- vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts) -- Rename symbol
+        --     -- vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts) -- Code actions
+        --     -- vim.keymap.set("n", "<space>cl", vim.lsp.codelens.run, opts) -- Run CodeLens
+        --     --
+        --     -- Optional: Add REPL integration if using haskell-tools.nvim
+        --   end,
+        --   settings = {
+        --     haskell = {
+        --       formattingProvider = "ormolu", -- Use Ormolu for formatting (can be changed to stylish-haskell or brittany)
+        --     },
+        --   },
+        -- },
       }
 
       require("mason").setup()
