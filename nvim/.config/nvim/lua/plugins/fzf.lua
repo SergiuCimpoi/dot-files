@@ -19,6 +19,9 @@ return {
     -- Trouble
     config.defaults.actions.files["ctrl-t"] = require("trouble.sources.fzf").actions.open
 
+    vim.api.nvim_set_hl(0, "FzfLuaNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "FzfLuaBorder", { bg = "none" })
+
     return {
       "default-title",
       fzf_colors = true,

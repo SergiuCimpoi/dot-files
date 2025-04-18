@@ -58,7 +58,6 @@ source ~/.local/share/zsh/plugins/fsh/fast-syntax-highlighting.plugin.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source <(fzf --zsh)
 
-alias ls='lsd --color=auto'
 alias grep='grep --color=auto'
 alias p="ping google.com"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"

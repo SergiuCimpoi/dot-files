@@ -40,6 +40,7 @@ return {
         },
         extra_groups = {
           "NeoTreeNormal",
+          "NeoTreeFloatNormal",
           "NeoTreeNormalNC",
         }, -- additional groups that should be cleared
         exclude_groups = {}, -- groups you don't want to clear
