@@ -53,23 +53,15 @@ return {
     opts = {
       jump = {
         autojump = true,
+        pos = "start",
       },
       modes = {
         char = {
           jump_labels = true,
           multi_line = false,
-          config = function()
-            return {
-              confirm_key = vim.g.mapleader,
-            }
-          end,
         },
         search = {
-          config = function()
-            return {
-              confirm_key = vim.g.mapleader,
-            }
-          end,
+          mode = "search",
         },
       },
     },
@@ -87,5 +79,21 @@ return {
     config = function()
       vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle UndoTree" })
     end,
+  },
+  {
+    "sphamba/smear-cursor.nvim",
+    enabled = vim.g.neovim_mode ~= "skitty", -- Disable plugin for skitty mode
+    cond = vim.g.neovide == nil,
+    opts = {
+      stiffness = 0.8, -- 0.6      [0, 1]
+      trailing_stiffness = 0.4, -- 0.4      [0, 1]
+      stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
+      trailing_stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
+      distance_stop_animating = 0.5, -- 0.1      > 0
+    },
+    {
+      "HiPhish/rainbow-delimiters.nvim",
+      enabled = false,
+    },
   },
 }
