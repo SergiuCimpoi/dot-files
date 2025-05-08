@@ -91,9 +91,9 @@ return {
       trailing_stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
       distance_stop_animating = 0.5, -- 0.1      > 0
     },
-    {
-      "HiPhish/rainbow-delimiters.nvim",
-      enabled = false,
-    },
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    enabled = false,
   },
 }
