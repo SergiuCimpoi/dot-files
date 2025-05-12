@@ -56,7 +56,7 @@ return {
       { "r",          mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
       { "R",          mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       -- Toggle mapping:
-      { "<leader>tf", mode = "n",               function() ToggleFlash() end,                        desc = "Toggle Flash.nvim mappings" },
+      { "<leader>jt", mode = "n",               function() ToggleFlash() end,                        desc = "Toggle Flash.nvim mappings" },
       -- { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
 }
