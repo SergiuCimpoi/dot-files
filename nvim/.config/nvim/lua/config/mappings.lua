@@ -23,9 +23,8 @@ vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General copy whole file" 
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- visually Yanks and positions after the selection
--- vim.keymap.set({ "x", "s" }, "ya", "ygv<Esc>", { noremap = true, desc = "[Y]ank and go [A]fter" })
-vim.keymap.set({ "x", "s" }, "ya", "y`>", { noremap = true, desc = "[Y]ank and go [A]fter" })
+-- yanks and positions after
+vim.keymap.set("x", "ya", "y`>", { noremap = true, desc = "[Y]ank for [A]ppend" })
 
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>", { silent = true })
@@ -112,6 +111,32 @@ vim.keymap.set("n", "]d", function()
 end, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating [D]iagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- Treesitter jumps
+vim.keymap.set("n", "[f", function()
+  local node = vim.treesitter.get_node({ ignore_injections = false })
+
+  while node and not vim.tbl_contains({ "function_declaration", "function_definition", "arrow_function" }, node:type()) do
+    node = node:parent()
+  end
+  if node then
+    local start_row, start_col = node:range()
+    vim.api.nvim_win_set_cursor(0, { start_row + 1, start_col })
+  end
+end, { desc = "Jump to start of current function" })
+
+vim.keymap.set("n", "]f", function()
+  local node = vim.treesitter.get_node({ ignore_injections = false })
+
+  while node and not vim.tbl_contains({ "function_declaration", "function_definition", "arrow_function" }, node:type()) do
+    node = node:parent()
+  end
+  if node then
+    local _, _, end_row, end_col = node:range()
+
+    vim.api.nvim_win_set_cursor(0, { end_row + 1, end_col - 1 })
+  end
+end, { desc = "Jump to end of current function" })
 
 -- CMake
 vim.keymap.set("", "<leader>cg", ":CMakeGenerate<CR>", opts_with_desc("[C]Make [G]enerate"))
