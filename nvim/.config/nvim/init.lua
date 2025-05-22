@@ -74,7 +74,7 @@ vim.opt.cursorlineopt = "both"
 vim.opt.cursorcolumn = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 15
+vim.opt.scrolloff = 37
 
 vim.o.showmatch = true
 vim.o.matchtime = 3

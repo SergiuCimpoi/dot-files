@@ -23,6 +23,10 @@ vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General copy whole file" 
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+-- visually Yanks and positions after the selection
+-- vim.keymap.set({ "x", "s" }, "ya", "ygv<Esc>", { noremap = true, desc = "[Y]ank and go [A]fter" })
+vim.keymap.set({ "x", "s" }, "ya", "y`>", { noremap = true, desc = "[Y]ank and go [A]fter" })
+
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>", { silent = true })
 
