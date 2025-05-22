@@ -63,8 +63,8 @@ alias p="ping google.com"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias lla="eza --color=always --all --long --group-directories-first --icons=always"
 alias llt="eza --color=always --tree --all"
-alias shell="vim $ZDOTDIR/.zshrc"
-alias profile="vim $HOME/.zprofile"
+alias shell="nvim $ZDOTDIR/.zshrc"
+alias profile="nvim $HOME/.zprofile"
 
 if grep -qi microsoft /proc/sys/kernel/osrelease 2>/dev/null; then
   # In WSL: use Windows pnpm.exe
