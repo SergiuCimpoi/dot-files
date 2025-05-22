@@ -8,6 +8,8 @@ export SAVEHIST="$HISTSIZE"
 export HISTFILE="$ZDOTDIR/.zsh_history"
 export EDITOR=/usr/bin/nvim
 export TERM=xterm-256color
+export LANG="de_DE.UTF-8"
+export LC_ALL="de_DE.UTF-8"
 
 
 setopt INC_APPEND_HISTORY
