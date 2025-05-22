@@ -65,6 +65,8 @@ alias lla="eza --color=always --all --long --group-directories-first --icons=alw
 alias llt="eza --color=always --tree --all"
 alias shell="vim $ZDOTDIR/.zshrc"
 alias profile="vim $HOME/.zprofile"
+
+alias pnpm="pnpm.exe"
 # alias rm="trash"
 
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
