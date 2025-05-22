@@ -4,7 +4,29 @@ return {
   opts = {
     lsp = {
       signature = {
-        enabled = false,
+        enabled = true, -- Enable Noice handling of signature help
+        auto_open = {
+          enabled = true, -- Automatically open signature help when available
+          trigger = true, -- Open on trigger characters (like '(' or ',')
+          luasnip = true, -- Open when jumping to Luasnip insert nodes
+          throttle = 50, -- Debounce LSP signature help request by 50ms
+        },
+        view = nil, -- Use default view, or set to "popup" or "hover"
+        opts = {}, -- Additional options for signature help
+      },
+      -- Optionally, configure documentation view for signature help:
+      documentation = {
+        view = "hover", -- Use the "hover" view for signature help docs
+        opts = {
+          lang = "markdown",
+          replace = true,
+          render = "plain",
+          format = { "{message}" },
+          win_options = {
+            concealcursor = "n",
+            conceallevel = 3,
+          },
+        },
       },
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,

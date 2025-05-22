@@ -27,6 +27,7 @@ return {
         "query",
         "vim",
         "vimdoc",
+        "regex",
         "xml",
       },
       auto_install = true,
