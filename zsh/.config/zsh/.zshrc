@@ -66,7 +66,11 @@ alias llt="eza --color=always --tree --all"
 alias shell="vim $ZDOTDIR/.zshrc"
 alias profile="vim $HOME/.zprofile"
 
+if grep -qi microsoft /proc/sys/kernel/osrelease 2>/dev/null; then
+  # In WSL: use Windows pnpm.exe
 alias pnpm="pnpm.exe"
+fi
+
 # alias rm="trash"
 
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
