@@ -24,7 +24,13 @@ vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General copy whole file" 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- yanks and positions after
-vim.keymap.set("x", "ya", "y`>", { noremap = true, desc = "[Y]ank for [A]ppend" })
+vim.keymap.set("x", "ya", function()
+  local so = vim.o.scrolloff
+  vim.o.scrolloff = 0
+
+  vim.cmd("normal! y`>")
+  vim.o.scrolloff = so
+end, { noremap = true, desc = "[Y]ank and move to end, with scrolloff workaround" })
 
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>", { silent = true })
