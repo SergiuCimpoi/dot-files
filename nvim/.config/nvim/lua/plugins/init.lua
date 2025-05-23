@@ -48,11 +48,19 @@ return {
     end,
   },
   {
-    "mbbill/undotree",
-    config = function()
-      vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle UndoTree" })
-    end,
+    "jiaoshijie/undotree",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = true,
+    keys = {
+      { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
+    },
   },
+  -- {
+  --   "mbbill/undotree",
+  --   config = function()
+  --     vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle UndoTree" })
+  --   end,
+  -- },
   {
     "sphamba/smear-cursor.nvim",
     enabled = vim.g.neovim_mode ~= "skitty", -- Disable plugin for skitty mode
