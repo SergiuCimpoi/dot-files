@@ -114,7 +114,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "VeryLazy", -- or your preferred event
-    opts = { mode = "cursor", max_lines = 3 },
+    opts = { mode = "cursor", max_lines = 7 },
     keys = {
       {
         "<leader>tc",
