@@ -77,4 +77,9 @@ return {
     "HiPhish/rainbow-delimiters.nvim",
     enabled = false,
   },
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+  },
 }
