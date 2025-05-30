@@ -8,8 +8,6 @@ export SAVEHIST="$HISTSIZE"
 export HISTFILE="$ZDOTDIR/.zsh_history"
 export EDITOR=/usr/bin/nvim
 export TERM=xterm-256color
-export LANG="de_DE.UTF-8"
-export LC_ALL="de_DE.UTF-8"
 
 
 setopt INC_APPEND_HISTORY
@@ -71,6 +69,9 @@ alias profile="nvim $HOME/.zprofile"
 if grep -qi microsoft /proc/sys/kernel/osrelease 2>/dev/null; then
   # In WSL: use Windows pnpm.exe
 alias pnpm="pnpm.exe"
+else
+export LANG="de_DE.UTF-8"
+export LC_ALL="de_DE.UTF-8"
 fi
 
 # alias rm="trash"
