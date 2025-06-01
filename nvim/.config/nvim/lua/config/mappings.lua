@@ -14,6 +14,9 @@ vim.keymap.set("i", "<C-l>", "<Right>", { desc = "Move right" })
 vim.keymap.set("i", "<C-j>", "<Down>", { desc = "Move down" })
 vim.keymap.set("i", "<C-k>", "<Up>", { desc = "Move up" })
 
+vim.keymap.set("c", "<C-j>", "<C-n>") -- Next command in history
+vim.keymap.set("c", "<C-k>", "<C-p>") -- Previous command in history
+
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear highlights" })
 
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "General save file" })

@@ -41,7 +41,6 @@ vim.api.nvim_create_autocmd("RecordingEnter", {
   end,
   group = vim.api.nvim_create_augroup("NoiceMacroNotfication", { clear = true }),
 })
-
 vim.api.nvim_create_autocmd("RecordingLeave", {
   callback = function()
     _MACRO_RECORDING_STATUS = false
@@ -52,7 +51,19 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
   end,
   group = vim.api.nvim_create_augroup("NoiceMacroNotficationDismiss", { clear = true }),
 })
-
+vim.api.nvim_buf_create_user_command(0, "ClangdSwitchSourceHeader", function()
+  local params = { uri = vim.uri_from_bufnr(0) }
+  vim.lsp.buf_request(0, "textDocument/switchSourceHeader", params, function(err, result)
+    if err then
+      error(tostring(err))
+    end
+    if not result then
+      print("Corresponding file can't be determined")
+      return
+    end
+    vim.cmd("edit " .. vim.uri_to_fname(result))
+  end)
+end, {})
 -- autosave files every second
 vim.opt.autoread = true
 vim.opt.updatetime = 1000

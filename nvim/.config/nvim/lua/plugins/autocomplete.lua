@@ -2,7 +2,6 @@ return { -- Autocompletion
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
-    -- Snippet Engine & its associated nvim-cmp source
     {
       "L3MON4D3/LuaSnip",
       build = (function()
@@ -81,8 +80,8 @@ return { -- Autocompletion
       --
       -- No, but seriously. Please read `:help ins-completion`, it is really good!
       mapping = cmp.mapping.preset.insert({
-        ["<A-j>"] = cmp.mapping.select_next_item(),
-        ["<A-k>"] = cmp.mapping.select_prev_item(),
+        ["<C-j>"] = cmp.mapping.select_next_item(),
+        ["<C-k>"] = cmp.mapping.select_prev_item(),
 
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -91,20 +90,20 @@ return { -- Autocompletion
 
         ["<C-Space>"] = cmp.mapping.complete({}),
 
-        -- Think of <A-l> as moving to the right of your snippet expansion.
+        -- Think of <C-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
         --  function $name($args)
         --    $body
         --  end
         --
-        -- <A-l> will move you to the right of each of the expansion locations.
-        -- <A-h> is similar, except moving you backwards.
-        ["<A-l>"] = cmp.mapping(function()
+        -- <C-l> will move you to the right of each of the expansion locations.
+        -- <C-h> is similar, except moving you backwards.
+        ["<C-l>"] = cmp.mapping(function()
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           end
         end, { "i", "s" }),
-        ["<A-h>"] = cmp.mapping(function()
+        ["<C-h>"] = cmp.mapping(function()
           if luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           end
@@ -133,11 +132,6 @@ return { -- Autocompletion
         end, { "i", "s" }),
       }),
       sources = {
-        {
-          name = "lazydev",
-          -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
-          group_index = 0,
-        },
         { name = "nvim_lsp" },
         { name = "luasnip" },
         -- { name = "buffer" },
@@ -150,8 +144,8 @@ return { -- Autocompletion
           vim_item.menu = ({
             nvim_lsp = "[LSP]",
             luasnip = "[Snippet]",
-            buffer = "[Buffer]",
-            path = "[Path]",
+            -- buffer = "[Buffer]",
+            -- path = "[Path]",
           })[entry.source.name]
           return vim_item
         end,
