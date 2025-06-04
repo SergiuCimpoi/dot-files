@@ -2,7 +2,6 @@ return {
   "neovim/nvim-lspconfig",
   dependencies = {
     { "williamboman/mason.nvim", config = true },
-    "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     "j-hui/fidget.nvim",
     "hrsh7th/cmp-nvim-lsp",
@@ -168,7 +167,6 @@ return {
     }
 
     require("mason").setup()
-    require("mason-lspconfig").setup({ ensure_installed = vim.tbl_keys(servers) })
 
     for server, opts in pairs(servers) do
       opts.capabilities = capabilities
