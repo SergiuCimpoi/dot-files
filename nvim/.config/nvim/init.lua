@@ -114,6 +114,7 @@ require("config.lazy")
 require("config.diagnostics")
 require("config.mappings")
 require("config.autocmds")
+require("config.lsp")
 
 local function is_wsl()
   local uname_output = vim.fn.system("uname -r")
