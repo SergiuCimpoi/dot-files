@@ -82,4 +82,52 @@ return {
     lazy = false,
     priority = 1000,
   },
+  -- rename in-place with the LSP and live feedback
+  {
+    "saecki/live-rename.nvim",
+    keys = {
+      {
+        "cr",
+        function()
+          require("live-rename").rename()
+        end,
+        desc = "Rename",
+      },
+      {
+        "cR",
+        function()
+          require("live-rename").rename({ text = "", insert = true })
+        end,
+        desc = "Rename (replace)",
+      },
+    },
+    opts = {
+      hl = {
+        current = "LiveRenameCurrent",
+        others = "LiveRenameOther",
+      },
+    },
+  },
+  {
+    "xzbdmw/clasp.nvim",
+    keys = {
+      {
+        "<C-w>l",
+        function()
+          require("clasp").wrap("next")
+        end,
+        mode = { "i", "n" },
+        desc = "Wrap next treesitter node with paranthesis",
+      },
+      {
+        "<C-w>h",
+        function()
+          require("clasp").wrap("prev")
+        end,
+        mode = { "i", "n" },
+        desc = "Wrap previous treesitter node with paranthesis",
+      },
+    },
+    opts = {},
+  },
 }
