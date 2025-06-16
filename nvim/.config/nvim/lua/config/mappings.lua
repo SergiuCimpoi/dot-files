@@ -14,35 +14,22 @@ vim.keymap.set("i", "<C-l>", "<Right>", { desc = "Move right" })
 vim.keymap.set("i", "<C-j>", "<Down>", { desc = "Move down" })
 vim.keymap.set("i", "<C-k>", "<Up>", { desc = "Move up" })
 
-vim.keymap.set("c", "<C-j>", "<C-n>") -- Next command in history
-vim.keymap.set("c", "<C-k>", "<C-p>") -- Previous command in history
+vim.keymap.set("c", "<C-j>", "<C-n>")
+vim.keymap.set("c", "<C-k>", "<C-p>")
 
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear highlights" })
 
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "General save file" })
 vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General copy whole file" })
 
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
 -- yanks and positions after
 vim.keymap.set("x", "ya", function()
-  local so = vim.o.scrolloff
-  vim.o.scrolloff = 0
-
   vim.cmd("normal! y`>")
-  vim.o.scrolloff = so
-end, { noremap = true, desc = "[Y]ank and move to end, with scrolloff workaround" })
+end, { noremap = true, desc = "[Y]ank and move to end" })
 
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ "n", "v" }, "<leader>", "<Nop>", { silent = true })
 
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
--- For conciseness
 local opts = { noremap = true, silent = true }
 local opts_with_desc = function(desc)
   return { noremap = true, silent = true, desc = desc }
