@@ -9,16 +9,6 @@ return {
     indent = {
       enabled = true,
       char = "│",
-      hl = {
-        "SnacksIndent1",
-        "SnacksIndent2",
-        "SnacksIndent3",
-        "SnacksIndent4",
-        "SnacksIndent5",
-        "SnacksIndent5",
-        "SnacksIndent7",
-        "SnacksIndent8",
-      },
       chunk = {
         -- when enabled, scopes will be rendered as chunks, except for the
         -- top-level scope which will be rendered as a scope.
@@ -43,9 +33,9 @@ return {
       enabled = true,
       timeout = 3000,
     },
-    picker = { enabled = true },
+    -- picker = { enabled = true },
     quickfile = { enabled = true },
-    scroll = { enabled = true },
+    -- scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
     styles = {
