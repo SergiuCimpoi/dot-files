@@ -15,7 +15,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<leader>ds", require("fzf-lua").lsp_document_symbols, "[D]ocument [S]ymbols")
     map("<leader>ws", require("fzf-lua").lsp_live_workspace_symbols, "[W]orkspace [S]ymbols")
     map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-    map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
+    map("<leader>ca", "<cmd>FzfLua lsp_code_actions<CR>", "[C]ode [A]ction")
+    map("<leader>ca", "<cmd>FzfLua lsp_range_code_actions<CR>", "[C]ode [A]ction", "v")
     map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
