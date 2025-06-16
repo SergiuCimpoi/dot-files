@@ -55,51 +55,10 @@ return {
       { "<leader>U", "<cmd>lua require('undotree').toggle()<cr>" },
     },
   },
-  -- {
-  --   "sphamba/smear-cursor.nvim",
-  --   enabled = vim.g.neovim_mode ~= "skitty", -- Disable plugin for skitty mode
-  --   cond = vim.g.neovide == nil,
-  --   opts = {
-  --     stiffness = 0.8, -- 0.6      [0, 1]
-  --     trailing_stiffness = 0.4, -- 0.4      [0, 1]
-  --     stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
-  --     trailing_stiffness_insert_mode = 0.6, -- 0.4      [0, 1]
-  --     distance_stop_animating = 0.5, -- 0.1      > 0
-  --   },
-  -- },
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-    enabled = false,
-  },
   {
     "scottmckendry/cyberdream.nvim",
     lazy = false,
     priority = 1000,
-  },
-  {
-    "saecki/live-rename.nvim",
-    keys = {
-      {
-        "cr",
-        function()
-          require("live-rename").rename()
-        end,
-        desc = "Rename",
-      },
-      {
-        "cR",
-        function()
-          require("live-rename").rename({ text = "", insert = true })
-        end,
-        desc = "Rename (replace)",
-      },
-    },
-    opts = {
-      hl = {
-        current = "LiveRenameCurrent",
-        others = "LiveRenameOther",
-      },
-    },
   },
   {
     "xzbdmw/clasp.nvim",

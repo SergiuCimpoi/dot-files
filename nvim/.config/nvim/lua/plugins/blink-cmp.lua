@@ -80,8 +80,7 @@ return {
     },
     sources = {
       default = { "lsp", "path", "snippets" },
-      fuzzy = { implementation = "prefer_rust_with_warning" },
     },
-    opts_extend = { "sources.default" },
+    fuzzy = { implementation = "prefer_rust_with_warning" },
   },
 }
