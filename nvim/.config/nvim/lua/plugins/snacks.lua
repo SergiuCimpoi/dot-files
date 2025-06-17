@@ -2,6 +2,7 @@ return {
   "folke/snacks.nvim",
   priority = 100000,
   lazy = false,
+  ---@diagnostic disable-next-line: undefined-doc-name
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
@@ -83,9 +84,9 @@ return {
     {
       "<leader>bd",
       function()
-        Snacks.bufdelete()
+        Snacks.bufdelete.all()
       end,
-      desc = "Delete Buffer",
+      desc = "Delete Buffers",
     },
     {
       "<leader>cR",

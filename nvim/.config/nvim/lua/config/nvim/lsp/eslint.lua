@@ -1,5 +1,5 @@
 return {
-  cmd = { "/home/srj/.local/share/nvim/mason/bin/vscode-eslint-language-server", "--stdio" },
+  cmd = { "vscode-eslint-language-server", "--stdio" },
   filetypes = {
     "javascript",
     "javascriptreact",
