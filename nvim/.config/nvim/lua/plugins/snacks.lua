@@ -34,7 +34,7 @@ return {
       enabled = true,
       timeout = 3000,
     },
-    -- picker = { enabled = true },
+    picker = { enabled = true },
     quickfile = { enabled = true },
     -- scroll = { enabled = true },
     statuscolumn = { enabled = true },
@@ -46,20 +46,6 @@ return {
     },
   },
   keys = {
-    {
-      "<leader>z",
-      function()
-        Snacks.zen()
-      end,
-      desc = "Toggle Zen Mode",
-    },
-    {
-      "<leader>Z",
-      function()
-        Snacks.zen.zoom()
-      end,
-      desc = "Toggle Zoom",
-    },
     {
       "<leader>.",
       function()
