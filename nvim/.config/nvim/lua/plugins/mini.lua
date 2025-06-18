@@ -18,6 +18,10 @@ return {
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require("mini.surround").setup()
 
+    require("mini.cursorword").setup({
+      delay = 100,
+    })
+
     -- require("mini.pairs").setup({})
   end,
 }

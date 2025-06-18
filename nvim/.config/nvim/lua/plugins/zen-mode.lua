@@ -4,7 +4,7 @@ return {
   opts = {
     window = {
       backdrop = 0.95, -- dim the background slightly
-      width = 1, -- use 100% of screen width
+      width = 0.8, -- use % of screen width
       height = 1, -- full height
       options = {
         signcolumn = "no", -- hide signcolumn
