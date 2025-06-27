@@ -2,14 +2,14 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    main = "nvim-treesitter.configs", -- Sets main module to use for opts
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    main = "nvim-treesitter.configs",
     opts = {
       ensure_installed = {
         "bash",
         "c",
         "cpp",
         "rust",
+        "haskell",
         "zig",
         "json",
         "javascript",
@@ -38,10 +38,10 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<A-,>",
-          node_incremental = "<A-,>",
+          init_selection = "<A-l>",
+          node_incremental = "<A-l>",
           scope_incremental = false,
-          node_decremental = "<A-.>",
+          node_decremental = "<A-h>",
         },
       },
     },

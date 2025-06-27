@@ -8,7 +8,7 @@ return {
       height = 1, -- full height
       options = {
         signcolumn = "no", -- hide signcolumn
-        number = false, -- hide absolute line numbers
+        number = true, -- hide absolute line numbers
         relativenumber = true, -- hide relative line numbers
         cursorline = true, -- hide cursorline
         cursorcolumn = false, -- hide cursorcolumn

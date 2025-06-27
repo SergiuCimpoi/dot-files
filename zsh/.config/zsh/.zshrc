@@ -8,7 +8,7 @@ export SAVEHIST="$HISTSIZE"
 export HISTFILE="$ZDOTDIR/.zsh_history"
 export EDITOR=/usr/bin/nvim
 export TERM=xterm-256color
-
+export CHROME_PASSWORD_STORE=basic
 
 setopt INC_APPEND_HISTORY
 
@@ -70,8 +70,8 @@ if grep -qi microsoft /proc/sys/kernel/osrelease 2>/dev/null; then
   # In WSL: use Windows pnpm.exe
 alias pnpm="pnpm.exe"
 else
-export LANG="de_DE.UTF-8"
-export LC_ALL="de_DE.UTF-8"
+# export LANG="de_DE.UTF-8"
+# export LC_ALL="de_DE.UTF-8"
 fi
 
 # alias rm="trash"
@@ -104,8 +104,10 @@ fzf-copy() {
 }
 bindkey -s '^Y' 'fzf-copy\n'
 
-# cd ~
-# neofetch 
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    eval "$(dbus-launch --sh-syntax --exit-with-session)"
+fi
+
 if [[ -o interactive ]] && [[ -z "$TMUX" ]]; then
     cd ~
     neofetch
