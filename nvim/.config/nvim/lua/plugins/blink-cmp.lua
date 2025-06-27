@@ -17,6 +17,10 @@ return {
       ["<A-l>"] = { "snippet_forward", "fallback" },
       ["<A-h>"] = { "snippet_backward", "fallback" },
     },
+    cmdline = {
+      keymap = { preset = "inherit" },
+      completion = { menu = { auto_show = true } },
+    },
     appearance = {
       nerd_font_variant = "normal",
       kind_icons = {
