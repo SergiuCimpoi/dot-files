@@ -24,7 +24,7 @@ return {
           format = { "{message}" },
           win_options = {
             concealcursor = "n",
-            conceallevel = 3,
+            conceallevel = 0,
           },
         },
       },

@@ -4,15 +4,15 @@ return {
   opts = {
     window = {
       backdrop = 0.95, -- dim the background slightly
-      width = 0.8, -- use % of screen width
+      width = 0.6, -- use % of screen width
       height = 1, -- full height
       options = {
-        signcolumn = "no", -- hide signcolumn
+        signcolumn = "yes", -- hide signcolumn
         number = true, -- hide absolute line numbers
         relativenumber = true, -- hide relative line numbers
         cursorline = true, -- hide cursorline
         cursorcolumn = false, -- hide cursorcolumn
-        foldcolumn = "0", -- hide foldcolumn
+        -- foldcolumn = "0", -- hide foldcolumn
         list = false, -- disable whitespace characters
       },
     },

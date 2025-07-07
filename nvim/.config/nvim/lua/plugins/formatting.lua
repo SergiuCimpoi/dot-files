@@ -22,6 +22,7 @@ return {
         lua = { "stylua", stop_after_first = true },
         cpp = { "clang-format", stop_after_first = true },
         xml = { "xmllint", stop_after_first = true },
+        haskell = { "fourmolu" },
         formatters = {
           prettierd = {
             condition = function()
