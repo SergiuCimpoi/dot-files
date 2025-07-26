@@ -1,4 +1,4 @@
-vim.lsp.enable({ "clangd", "lua_ls", "vtsls", "eslint", "hls" })
+vim.lsp.enable({ "clangd", "lua_ls", "eslint", "hls" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
