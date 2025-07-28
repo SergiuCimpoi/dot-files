@@ -24,14 +24,14 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-local virtual_lines_enabled = false
 function _G.toggle_virtual_lines()
-  virtual_lines_enabled = not virtual_lines_enabled
+  local current = vim.diagnostic.config().virtual_lines
+  local enabled = not current or current == false
   vim.diagnostic.config({
-    virtual_lines = virtual_lines_enabled and { current_line = true } or false,
+    virtual_lines = enabled and { current_line = true } or false,
     virtual_text = false,
   })
 end
 
 -- Keymap
-vim.keymap.set("n", "<leader>d", toggle_virtual_lines, { desc = "Toggle diagnostic virtual lines" })
+vim.keymap.set("n", "<leader>dv", toggle_virtual_lines, { desc = "Toggle diagnostic virtual lines" })
