@@ -4,14 +4,14 @@ return {
   opts = {
     window = {
       backdrop = 0.95, -- dim the background slightly
-      width = 0.6, -- use % of screen width
+      -- width = 0.6, -- use % of screen width
       height = 1, -- full height
       options = {
         signcolumn = "yes", -- hide signcolumn
         number = true, -- hide absolute line numbers
-        relativenumber = true, -- hide relative line numbers
-        cursorline = true, -- hide cursorline
-        cursorcolumn = false, -- hide cursorcolumn
+        -- relativenumber = true, -- hide relative line numbers
+        -- cursorline = true, -- hide cursorline
+        -- cursorcolumn = false, -- hide cursorcolumn
         -- foldcolumn = "0", -- hide foldcolumn
         list = false, -- disable whitespace characters
       },
@@ -24,7 +24,7 @@ return {
       },
       tmux = { enabled = true }, -- hide tmux statusline (requires allow-passthrough)
     },
-    on_open = function()
+    on_open = function(win)
       -- Hide bufferline and dropbar (if used)
       vim.opt.showtabline = 0
       pcall(function()
@@ -34,6 +34,11 @@ return {
           dropbar.refresh()
         end
       end)
+      -- get window config
+      local config = vim.api.nvim_win_get_config(win)
+      -- offset from left by changing col position
+      config.col = math.floor(vim.o.columns * 0.15) -- 15% offset from left
+      vim.api.nvim_win_set_config(win, config)
     end,
     on_close = function()
       -- Restore bufferline and dropbar
