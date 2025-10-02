@@ -87,4 +87,5 @@ return {
     version = "*",
     config = true,
   },
+  "tidalcycles/vim-tidal",
 }
