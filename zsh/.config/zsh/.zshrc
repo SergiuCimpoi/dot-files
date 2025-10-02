@@ -57,6 +57,8 @@ bindkey '^e' edit-command-line
 source ~/.local/share/zsh/plugins/fsh/fast-syntax-highlighting.plugin.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source <(fzf --zsh)
+[ -f ~/.openai_env ] && source ~/.openai_env
+
 
 alias grep='grep --color=auto'
 alias p="ping google.com"
