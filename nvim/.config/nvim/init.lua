@@ -116,20 +116,6 @@ require("config.mappings")
 require("config.autocmds")
 require("config.lsp")
 
-local function is_wsl()
-  local uname_output = vim.fn.system("uname -r")
-  if uname_output:find("Microsoft") then
-    return true
-  elseif vim.fn.exists("$WSL_DISTRO_NAME") ~= 0 then
-    return true
-  else
-    return false
-  end
-end
-
--- Check if running in WSL and print message
-WSL = is_wsl()
-
 if vim.g.neovide then
   vim.opt.guifont = "JetBrainsMono Nerd Font:h12"
   vim.g.neovide_opacity = 0.8

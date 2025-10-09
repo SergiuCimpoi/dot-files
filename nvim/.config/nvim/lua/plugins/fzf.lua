@@ -1,3 +1,16 @@
+local function is_wsl()
+  local uname_output = vim.fn.system("uname -r")
+  if uname_output:find("Microsoft") then
+    return true
+  elseif vim.fn.exists("$WSL_DISTRO_NAME") ~= 0 then
+    return true
+  else
+    return false
+  end
+end
+
+WSL = is_wsl()
+
 return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
