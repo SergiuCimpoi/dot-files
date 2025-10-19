@@ -6,7 +6,8 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$
 export HISTSIZE=268435456
 export SAVEHIST="$HISTSIZE"
 export HISTFILE="$ZDOTDIR/.zsh_history"
-export EDITOR=/usr/bin/nvim
+export EDITOR="nvim"
+export VISUAL="nvim"
 export TERM=xterm-256color
 export CHROME_PASSWORD_STORE=basic
 
