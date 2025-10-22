@@ -60,6 +60,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source <(fzf --zsh)
 [ -f ~/.openai_env ] && source ~/.openai_env
 
+for rc in ~/.config/zshrc.d/*.zsh; do
+  source "$rc"
+done
 
 alias grep='grep --color=auto'
 alias p="ping google.com"
