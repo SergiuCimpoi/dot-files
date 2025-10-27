@@ -60,6 +60,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source <(fzf --zsh)
 [ -f ~/.openai_env ] && source ~/.openai_env
 
+setopt nullglob
 for rc in ~/.config/zshrc.d/*.zsh; do
   source "$rc"
 done
