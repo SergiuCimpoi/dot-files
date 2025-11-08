@@ -4,6 +4,10 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "alfaix/neotest-gtest",
+    "nvim-neotest/nvim-nio",
+    "antoinemadec/FixCursorHold.nvim",
+    "mfussenegger/nvim-dap",
+    "marilari88/neotest-vitest",
   },
   config = function()
     require("neotest").setup({
@@ -13,15 +17,38 @@ return {
           --   return vim.loop.cwd()
           -- end,
         }),
+        require("neotest-vitest"),
       },
     })
-    vim.keymap.set("n", "<leader>ts", function()
-      local success, err = pcall(require("neotest").summary.toggle)
-      if not success then
-        print("Error toggling Neotest summary: " .. err)
-      end
-    end, { desc = "Toggle Neotest Summary" })
-
-    vim.keymap.set("n", "<leader>gt", ":lua require('neotest').summary.open()<CR>", { silent = true, desc = "Open Neotest summary" })
   end,
+  keys = {
+    {
+      "<leader>tr",
+      function()
+        require("neotest").run.run()
+      end,
+      desc = "Run nearest test",
+    },
+    {
+      "<leader>tf",
+      function()
+        require("neotest").run.run(vim.fn.expand("%"))
+      end,
+      desc = "Run test file",
+    },
+    {
+      "<leader>td",
+      function()
+        require("neotest").run.run({ strategy = "dap" })
+      end,
+      desc = "Debug nearest test",
+    },
+    {
+      "<leader>ts",
+      function()
+        require("neotest").summary.toggle()
+      end,
+      desc = "Toggle test summary",
+    },
+  },
 }
