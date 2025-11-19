@@ -145,6 +145,11 @@ return {
     dap.configurations.c = dbg.config
     dap.configurations.cpp = dbg.config
 
+    -- rust
+    local rust_dbg = require("config.debug.codelldb")
+    dap.adapters.codelldb = rust_dbg.adapter
+    dap.configurations.rust = rust_dbg.config
+
     -- ts
     local exts = {
       "javascript",
