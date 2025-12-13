@@ -134,6 +134,13 @@ vim.keymap.set("n", "]f", function()
   end
 end, { desc = "Jump to end of current function" })
 
+-- Bufferline
+for i = 1, 9 do
+  vim.keymap.set("n", "<leader>" .. i, function()
+    require("bufferline").go_to_buffer(i, true)
+  end, { desc = "Buffer " .. i })
+end
+
 -- CMake
 vim.keymap.set("", "<leader>cg", ":CMakeGenerate<CR>", opts_with_desc("[C]Make [G]enerate"))
 vim.keymap.set("", "<leader>cb", ":CMakeBuild<CR>", opts_with_desc("[C]Make [B]uild"))
