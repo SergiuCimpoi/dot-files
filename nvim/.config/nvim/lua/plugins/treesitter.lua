@@ -2,6 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    branch = "master",
     main = "nvim-treesitter.configs",
     opts = {
       ensure_installed = {
@@ -45,53 +46,34 @@ return {
           node_decremental = "<A-h>",
         },
       },
-    },
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        highlight = {
+      textobjects = {
+        select = {
           enable = true,
-          language_tree = true,
-          additional_vim_regex_highlighting = { "org" },
-        },
-        textobjects = {
-          lsp_interop = {
-            enable = true,
-            border = "none",
-            floating_preview_opts = {},
-            peek_definition_code = {
-              ["<leader>df"] = "@function.outer",
-              ["<leader>dF"] = "@class.outer",
-            },
+          lookahead = true,
+          keymaps = {
+            ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["al"] = "@loop.outer",
+            ["il"] = "@loop.inner",
+            ["ac"] = "@comment.outer",
+            ["ic"] = "@comment.inner",
+            ["aa"] = "@parameter.outer",
+            ["ia"] = "@parameter.inner",
+            ["is"] = { query = "@scope", query_group = "locals" },
           },
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["al"] = "@loop.outer",
-              ["il"] = "@loop.inner",
-              ["ac"] = "@comment.outer",
-              ["ic"] = "@comment.inner",
-              ["aa"] = "@parameter.outer",
-              ["ia"] = "@parameter.inner",
-              ["is"] = { query = "@scope", query_group = "locals" },
-            },
-            selection_modes = {
-              ["@parameter.outer"] = "v",
-              ["@function.outer"] = "V",
-              ["@class.outer"] = "<c-v>",
-            },
-            include_surrounding_whitespace = true,
+          selection_modes = {
+            ["@parameter.outer"] = "v",
+            ["@function.outer"] = "V",
+            ["@class.outer"] = "<c-v>",
           },
+          include_surrounding_whitespace = true,
         },
-      })
-    end,
+      },
+    },
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
   },
+
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "VeryLazy", -- or your preferred event
