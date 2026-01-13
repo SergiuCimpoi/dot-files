@@ -137,8 +137,9 @@ return {
 
     -- C++
     -- local dbg = require("config.debug.lldb")
-    local dbg = require("config.debug.gdb")
+    -- local dbg = require("config.debug.gdb")
     -- local dbg = require("config.debug.lldb-dap")
+    local dbg = require("config.debug.codelldb")
 
     -- dap.adapters.lldb = dbg.adapter
     dap.adapters.gdb = dbg.adapter
