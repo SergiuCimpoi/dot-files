@@ -75,7 +75,7 @@ alias profile="nvim $HOME/.zprofile"
 
 if grep -qi microsoft /proc/sys/kernel/osrelease 2>/dev/null; then
   # In WSL: use Windows pnpm.exe
-alias pnpm="pnpm.exe"
+# alias pnpm="pnpm.exe"
 else
 # export LANG="de_DE.UTF-8"
 # export LC_ALL="de_DE.UTF-8"
