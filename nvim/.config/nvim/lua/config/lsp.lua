@@ -1,3 +1,15 @@
+vim.lsp.config("eslint", {
+  flags = {
+    allow_incremental_sync = false,
+    debounce_text_changes = 1000,
+  },
+  settings = {
+    run = "onSave",
+    format = false,
+    codeActionOnSave = { enable = true, mode = "all" },
+  },
+})
+
 vim.lsp.enable({ "clangd", "lua_ls", "eslint", "hls" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
