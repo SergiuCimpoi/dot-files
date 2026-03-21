@@ -6,7 +6,7 @@
 ratio          = [ 1, 4, 3 ]
 sort_by        = "alphabetical"
 sort_sensitive = false
-sort_reverse 	 = false
+sort_reverse   = false
 sort_dir_first = true
 sort_translit  = false
 linemode       = "none"
@@ -85,47 +85,31 @@ image_bound      = [ 5000, 5000 ]
 suppress_preload = false
 
 [plugin]
-# fetchers = [
-# 	# Mimetype
-# 	{ id = "mime", name = "*", run = "mime", prio = "high" },
-# ]
 spotters = [
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/*", run = "image" },
 	{ name = "*/", run = "folder" },
 	# Code
 	{ mime = "text/*", run = "code" },
 	{ mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
-	# Image
-	{ mime = "image/{avif,hei?,jxl}", run = "magick" },
-	{ mime = "image/svg+xml", run = "svg" },
-	{ mime = "image/*", run = "image" },
-	# Video
-	{ mime = "video/*", run = "video" },
-	# Fallback
-	{ name = "*", run = "file" },
+	# keep any other spotters you had
 ]
 preloaders = [
-	# Image
-	{ mime = "image/{avif,hei?,jxl}", run = "magick" },
-	{ mime = "image/svg+xml", run = "svg" },
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
 	{ mime = "image/*", run = "image" },
-	# Video
 	{ mime = "video/*", run = "video" },
-	# PDF
 	{ mime = "application/pdf", run = "pdf" },
-	# Font
 	{ mime = "font/*", run = "font" },
 	{ mime = "application/ms-opentype", run = "font" },
 ]
 previewers = [
 	{ name = "*/", run = "folder" },
-	# Code
 	{ mime = "text/*", run = "code" },
 	{ mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
 	# JSON
 	{ mime = "application/{json,ndjson}", run = "json" },
 	# Image
-	{ mime = "image/{avif,hei?,jxl}", run = "magick" },
-	{ mime = "image/svg+xml", run = "svg" },
+	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
 	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
@@ -215,7 +199,8 @@ open_origin = "hovered"
 open_offset = [ 0, 1, 50, 7 ]
 
 [which]
-sort_by      	 = "none"
+sort_by        = "none"
 sort_sensitive = false
-sort_reverse 	 = false
+sort_reverse   = false
 sort_translit  = false
+
