@@ -11,6 +11,15 @@ export VISUAL="nvim"
 export TERM=xterm-256color
 export CHROME_PASSWORD_STORE=basic
 
+
+# gcc11
+# export CC=/usr/local/bin/gcc11
+# export CXX=/usr/local/bin/g++11
+
+# gcc
+export CC=/usr/sbin/gcc
+export CXX=/usr/sbin/g++
+
 setopt INC_APPEND_HISTORY
 
 bindkey '^R' history-incremental-search-backward

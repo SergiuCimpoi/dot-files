@@ -10,6 +10,8 @@ vim.lsp.config("eslint", {
   },
 })
 
+vim.diagnostic.config({ update_in_insert = false })
+
 vim.lsp.enable({ "clangd", "lua_ls", "eslint", "hls" })
 
 vim.api.nvim_create_autocmd("LspAttach", {

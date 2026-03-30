@@ -21,6 +21,7 @@ return {
       },
       integrations = {
         cmp = true,
+        -- lualine = true,
         gitsigns = true,
         nvimtree = true,
         telescope = true,
@@ -48,6 +49,5 @@ return {
         conditionals = { "italic" },
       },
     })
-    vim.cmd.colorscheme("catppuccin")
   end,
 }
