@@ -127,3 +127,5 @@ if vim.g.neovide then
   vim.g.neovide_cursor_vfx_particle_density = 10.0
   vim.g.neovide_cursor_vfx_opacity = 150.0
 end
+
+vim.cmd.colorscheme("catppuccin")

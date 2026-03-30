@@ -21,6 +21,7 @@ return {
       },
       integrations = {
         cmp = true,
+        -- lualine = true,
         gitsigns = true,
         nvimtree = true,
         telescope = true,
