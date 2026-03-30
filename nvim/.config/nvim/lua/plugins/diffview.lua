@@ -5,20 +5,33 @@ return {
   },
   config = function()
     require("diffview").setup({
+
       diff_binaries = false,
       enhanced_diff_hl = false,
       git_cmd = { "git" },
       use_icons = true,
       show_help_hints = true,
+
       watch_index = true,
       icons = {
         folder_closed = "",
         folder_open = "",
       },
+
       signs = {
         fold_closed = "",
         fold_open = "",
         done = "✓",
+      },
+      hooks = {
+        diff_buf_read = function(bufnr)
+          -- Detach LSP from git-revision buffers to prevent clangd URI errors
+          vim.schedule(function()
+            for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+              vim.lsp.buf_detach_client(bufnr, client.id)
+            end
+          end)
+        end,
       },
       view = {
         merge_tool = {
@@ -38,7 +51,8 @@ return {
       },
       file_history_panel = {
         log_options = {
-          git = { -- Add this 'git' wrapper
+          git = {
+
             single_file = {
               diff_merges = "combined",
             },

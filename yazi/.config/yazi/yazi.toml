@@ -19,8 +19,8 @@ title_format   = "Yazi: {cwd}"
 [preview]
 wrap            = "no"
 tab_size        = 2
-max_width       = 6000
-max_height      = 6000
+max_width       = 4000
+max_height      = 4000
 cache_dir       = ""
 image_delay     = 30
 image_filter    = "triangle"
@@ -85,10 +85,10 @@ image_bound      = [ 5000, 5000 ]
 suppress_preload = false
 
 [plugin]
-fetchers = [
-	# Mimetype
-	{ id = "mime", name = "*", run = "mime", prio = "high" },
-]
+# fetchers = [
+# 	# Mimetype
+# 	{ id = "mime", name = "*", run = "mime", prio = "high" },
+# ]
 spotters = [
 	{ name = "*/", run = "folder" },
 	# Code

@@ -10,6 +10,7 @@ return {
       end,
       settings = {
         tsserver_logs = "off",
+        separate_diagnostic_server = false,
         expose_as_code_action = "all",
         separate_diagnostic_server = false,
         jsx_close_tag = {
