@@ -36,7 +36,7 @@ return {
         snacks = true,
         which_key = true,
         treesitter_context = true,
-        -- Add or remove integrations as you use them
+        statusline = true,
       },
       -- Optional: Other Catppuccin options
       transparent_background = true,
