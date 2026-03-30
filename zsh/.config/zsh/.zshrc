@@ -2,7 +2,7 @@ autoload -U colors && colors
 setopt autocd
 setopt interactive_comments
 
-export PATH="$HOME/.local/share/bob/nvim-bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export HISTSIZE=268435456
 export SAVEHIST="$HISTSIZE"
 export HISTFILE="$ZDOTDIR/.zsh_history"
@@ -10,6 +10,15 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export TERM=xterm-256color
 export CHROME_PASSWORD_STORE=basic
+
+
+# gcc11
+# export CC=/usr/local/bin/gcc11
+# export CXX=/usr/local/bin/g++11
+
+# gcc
+export CC=/usr/sbin/gcc
+export CXX=/usr/sbin/g++
 
 setopt INC_APPEND_HISTORY
 

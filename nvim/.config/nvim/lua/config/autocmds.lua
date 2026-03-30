@@ -1,6 +1,11 @@
 --  See `:help lua-guide-autocommands`
 local group = vim.api.nvim_create_augroup("SrjAutogroup", { clear = true })
 
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.cmd("Catppuccin mocha")
+  end,
+})
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = group,

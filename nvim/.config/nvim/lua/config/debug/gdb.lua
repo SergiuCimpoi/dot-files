@@ -12,6 +12,10 @@ return {
       program = function()
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
       end,
+      args = function()
+        local args = vim.fn.input("Args: ")
+        return vim.split(args, " ", { trimempty = true })
+      end,
       console = "integratedTerminal",
       runInTerminal = false,
       cwd = "${workspaceFolder}",

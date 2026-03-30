@@ -48,6 +48,5 @@ return {
         conditionals = { "italic" },
       },
     })
-    vim.cmd.colorscheme("catppuccin")
   end,
 }
