@@ -67,7 +67,36 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      tabline = {},
+      tabline = {
+        lualine_c = {
+          {
+            "buffers",
+            mode = 0, -- just filename
+            show_filename_only = true,
+            hide_filename_extension = false,
+            show_modified_status = true,
+            use_mode_colors = false,
+            max_length = vim.o.columns * 2 / 3,
+            separator = "",
+            padding = { left = 1, right = 1 },
+            symbols = {
+              modified = " ●",
+              alternate_file = "",
+              directory = "",
+            },
+            buffers_color = {
+              active = { fg = "#89B3FB", bg = "none", gui = "bold" },
+              inactive = { fg = "#BAC2DE", bg = "none" },
+            },
+            filetype_names = {
+              TelescopePrompt = "Telescope",
+              dashboard = "Dashboard",
+              alpha = "Alpha",
+              ["neo-tree"] = "Explorer",
+            },
+          },
+        },
+      },
       extensions = {
         "fugitive",
         "neo-tree",

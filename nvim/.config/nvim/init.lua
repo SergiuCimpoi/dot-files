@@ -129,4 +129,3 @@ if vim.g.neovide then
 end
 
 vim.cmd.colorscheme("catppuccin")
-vim.opt.title = false -- Neovim sendet keinen Titel mehr

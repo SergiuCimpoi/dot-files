@@ -1,0 +1,73 @@
+return {
+  "akinsho/bufferline.nvim",
+  dependencies = {
+    "moll/vim-bbye",
+    "nvim-tree/nvim-web-devicons",
+  },
+  config = function()
+    require("bufferline").setup({
+      options = {
+        numbers = "ordinal",
+        separator_style = { "", "" },
+        indicator = {
+          style = "none",
+        },
+        offsets = {
+          {
+            filetype = "neo-tree",
+            text = "File Explorer",
+            highlight = "BufferLineOffset",
+            text_align = "left",
+          },
+        },
+      },
+
+      highlights = {
+        fill = { bg = "none" },
+        background = { bg = "none" },
+        offset_separator = { bg = "none" },
+        buffer_visible = { bg = "none" },
+        close_button = { bg = "none" },
+        close_button_visible = { bg = "none" },
+        separator = { bg = "none" },
+        separator_visible = { bg = "none" },
+        numbers = { bg = "none" },
+        numbers_visible = { bg = "none" },
+        tab = { bg = "none" },
+        tab_close = { bg = "none" },
+        tab_separator = { bg = "none" },
+        modified = { bg = "none" },
+        modified_visible = { bg = "none" },
+        trunc_marker = { bg = "none" },
+
+        buffer_selected = { bg = "none", fg = "#89B3FB", bold = true },
+        numbers_selected = { bg = "none", fg = "#89B3FB" },
+        close_button_selected = { bg = "none", fg = "#89B3FB" },
+        separator_selected = { bg = "none", fg = "none" },
+        indicator_selected = { bg = "none", fg = "none" },
+        modified_selected = { bg = "none" },
+        tab_selected = { bg = "none" },
+        tab_separator_selected = { bg = "none" },
+      },
+
+      -- fill = { bg = "none" },
+      -- background = { bg = "none" },
+      -- -- buffer_visible = { bg = "none" },
+      -- -- buffer_selected = { bg = "none" },
+      -- tab = { bg = "none" },
+      -- -- tab_selected = { bg = "none" },
+      -- tab_close = { bg = "none" },
+      -- close_button = { bg = "none" },
+      -- close_button_visible = { bg = "none" },
+      -- -- close_button_selected = { bg = "none" },
+      -- separator = { bg = "none" },
+      -- separator_visible = { bg = "none" },
+      -- -- separator_selected = { bg = "none" },
+      -- -- indicator_selected = { bg = "none" },
+      -- offset_separator = { bg = "none" },
+      -- numbers = { bg = "none" },
+      -- numbers_visible = { bg = "none" },
+      -- -- numbers_selected = { bg = "none" },
+    })
+  end,
+}
