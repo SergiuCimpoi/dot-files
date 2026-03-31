@@ -1,18 +1,18 @@
 return {
   "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     local mode = {
       "mode",
       fmt = function(str)
         return " " .. str
-        -- return " " .. str:sub(1, 1) -- displays only the first character of the mode
       end,
     }
 
     local filename = {
       "filename",
-      file_status = true, -- displays file status (readonly status, modified status)
-      path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+      file_status = true,
+      path = 1,
     }
 
     local hide_in_width = function()
@@ -33,7 +33,7 @@ return {
     local diff = {
       "diff",
       colored = false,
-      symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+      symbols = { added = " ", modified = " ", removed = " " },
       cond = hide_in_width,
     }
 
@@ -41,11 +41,19 @@ return {
       options = {
         theme = "auto",
         icons_enabled = true,
+        globalstatus = true,
+        always_show_tabline = true,
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },
         disabled_filetypes = { "alpha", "neo-tree" },
         always_divide_middle = true,
+        refresh = {
+          statusline = 100,
+          tabline = 100,
+          winbar = 100,
+        },
       },
+
       sections = {
         lualine_a = { mode },
         lualine_b = { "branch" },
@@ -59,6 +67,7 @@ return {
         lualine_y = { "location" },
         lualine_z = { "progress" },
       },
+
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
@@ -67,36 +76,38 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      tabline = {
-        lualine_c = {
-          {
-            "buffers",
-            mode = 0, -- just filename
-            show_filename_only = true,
-            hide_filename_extension = false,
-            show_modified_status = true,
-            use_mode_colors = false,
-            max_length = vim.o.columns * 2 / 3,
-            separator = "",
-            padding = { left = 1, right = 1 },
-            symbols = {
-              modified = " ●",
-              alternate_file = "",
-              directory = "",
-            },
-            buffers_color = {
-              active = { fg = "#89B3FB", bg = "none", gui = "bold" },
-              inactive = { fg = "#BAC2DE", bg = "none" },
-            },
-            filetype_names = {
-              TelescopePrompt = "Telescope",
-              dashboard = "Dashboard",
-              alpha = "Alpha",
-              ["neo-tree"] = "Explorer",
-            },
-          },
-        },
-      },
+
+      -- tabline = {
+      --   lualine_c = {
+      --     {
+      --       "buffers",
+      --       mode = 2,
+      --       show_filename_only = true,
+      --       hide_filename_extension = false,
+      --       show_modified_status = true,
+      --       use_mode_colors = false,
+      --       max_length = vim.o.columns * 2 / 3,
+      --       separator = "",
+      --       padding = { left = 1, right = 1 },
+      --       symbols = {
+      --         modified = " ●",
+      --         alternate_file = "",
+      --         directory = "",
+      --       },
+      --       buffers_color = {
+      --         active = { fg = "#89B4FA", bg = "none", gui = "bold" },
+      --         inactive = { fg = "#BAC2DE", bg = "none" },
+      --       },
+      --       filetype_names = {
+      --         TelescopePrompt = "Telescope",
+      --         dashboard = "Dashboard",
+      --         alpha = "Alpha",
+      --         ["neo-tree"] = "Explorer",
+      --       },
+      --     },
+      --   },
+      -- },
+
       extensions = {
         "fugitive",
         "neo-tree",
@@ -106,5 +117,11 @@ return {
         "quickfix",
       },
     })
+
+    -- for i = 1, 9 do
+    --   vim.keymap.set("n", "<leader>" .. i, function()
+    --     vim.cmd("LualineBuffersJump " .. i)
+    --   end, { desc = "Buffer " .. i })
+    -- end
   end,
 }
