@@ -1,0 +1,35 @@
+model = "gpt-5.4"
+model_reasoning_effort = "high"
+web_search = "cached"
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+personality = "pragmatic"
+
+[shell_environment_policy]
+include_only = ["PATH", "HOME", "USER", "SHELL", "TERM", "LANG", "LC_ALL", "EDITOR", "VISUAL", "PAGER", "GIT_EDITOR"]
+
+[features]
+shell_snapshot = true
+multi_agent = true
+fast_mode = true
+undo = true
+voice_transcription = true
+
+[projects."/home/srj/git/client"]
+trust_level = "trusted"
+
+[projects."/home/srj/git/imp"]
+trust_level = "trusted"
+
+[projects."/home/srj/git/uic_cpp"]
+trust_level = "trusted"
+
+[projects."/home/srj"]
+trust_level = "trusted"
+
+[projects."/home/srj/git/test/ui"]
+trust_level = "trusted"
+
+[tui]
+status_line = ["model-with-reasoning", "context-remaining", "current-dir", "total-input-tokens", "total-output-tokens"]
+
