@@ -1,4 +1,23 @@
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
+
+vim.lsp.config("clangd", {
+  capabilities = capabilities,
+})
+
+vim.lsp.config("lua_ls", {
+  capabilities = capabilities,
+})
+
+vim.lsp.config("hls", {
+  capabilities = capabilities,
+})
+
 vim.lsp.config("eslint", {
+  capabilities = capabilities,
   flags = {
     allow_incremental_sync = false,
     debounce_text_changes = 1000,

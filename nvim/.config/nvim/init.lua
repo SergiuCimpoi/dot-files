@@ -81,13 +81,6 @@ vim.opt.scrolloff = 20
 vim.o.showmatch = true
 vim.o.matchtime = 3
 
--- Folding
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-vim.o.foldcolumn = "1"
-vim.o.foldenable = false
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
 vim.opt.listchars = {
   -- space = "⋅",
   -- eol = "↴",
@@ -117,15 +110,5 @@ require("config.diagnostics")
 require("config.mappings")
 require("config.autocmds")
 require("config.lsp")
-
-if vim.g.neovide then
-  vim.opt.guifont = "JetBrainsMono Nerd Font:h12"
-  vim.g.neovide_opacity = 0.8
-  vim.g.neovide_cursor_animation_length = 0.1
-  vim.g.neovide_cursor_trail_size = 0.3
-  vim.g.neovide_cursor_vfx_mode = ""
-  vim.g.neovide_cursor_vfx_particle_density = 10.0
-  vim.g.neovide_cursor_vfx_opacity = 150.0
-end
 
 vim.cmd.colorscheme("catppuccin")
