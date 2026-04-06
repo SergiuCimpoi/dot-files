@@ -10,7 +10,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export TERM=xterm-256color
 export CHROME_PASSWORD_STORE=basic
-
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
 # gcc11
 # export CC=/usr/local/bin/gcc11
