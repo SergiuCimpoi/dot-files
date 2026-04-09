@@ -12,10 +12,6 @@ export TERM=xterm-256color
 export CHROME_PASSWORD_STORE=basic
 export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 
-# gcc11
-# export CC=/usr/local/bin/gcc11
-# export CXX=/usr/local/bin/g++11
-
 # gcc
 export CC=/usr/sbin/gcc
 export CXX=/usr/sbin/g++
