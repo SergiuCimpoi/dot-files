@@ -25,13 +25,6 @@ return {
       },
     })
 
-    vim.opt.fillchars = {
-      foldopen = "",
-      foldclose = "",
-      foldsep = "│",
-      fold = " ",
-    }
-
     vim.o.foldcolumn = "1"
   end,
 }

@@ -4,12 +4,6 @@ return {
     "kevinhwang91/promise-async",
   },
   event = "VeryLazy",
-  init = function()
-    vim.o.foldcolumn = "1"
-    vim.o.foldlevel = 99
-    vim.o.foldlevelstart = 99
-    vim.o.foldenable = false
-  end,
   config = function()
     local ufo = require("ufo")
 

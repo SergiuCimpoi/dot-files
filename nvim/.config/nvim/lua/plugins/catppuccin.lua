@@ -111,7 +111,5 @@ return {
         conditionals = { "italic" },
       },
     })
-
-    vim.cmd.colorscheme("catppuccin-nvim")
   end,
 }

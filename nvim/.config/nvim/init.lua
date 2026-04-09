@@ -81,7 +81,13 @@ vim.opt.scrolloff = 20
 vim.o.showmatch = true
 vim.o.matchtime = 3
 
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = false
+
 vim.opt.listchars = {
+
   -- space = "⋅",
   -- eol = "↴",
   tab = "▎_",
@@ -111,4 +117,4 @@ require("config.mappings")
 require("config.autocmds")
 require("config.lsp")
 
--- vim.cmd.colorscheme("catppuccin-nvim")
+vim.cmd.colorscheme("catppuccin")
