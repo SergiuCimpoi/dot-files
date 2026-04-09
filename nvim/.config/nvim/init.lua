@@ -117,4 +117,14 @@ require("config.mappings")
 require("config.autocmds")
 require("config.lsp")
 
-vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("catppuccin")
+require("catppuccin").setup({
+  flavour = "mocha",
+  transparent_background = true,
+  float = {
+    transparent = true,
+    solid = false,
+  },
+})
+
+vim.cmd.colorscheme("catppuccin-nvim")

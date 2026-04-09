@@ -17,18 +17,18 @@ return {
           CursorLineNr = { fg = C.maroon, bold = true },
 
           -- -- C++ readability: cool down the warm palette
-          -- ["@type"] = { fg = C.blue },
-          -- ["@type.builtin"] = { fg = C.sapphire },
-          -- ["@type.definition"] = { fg = C.blue, style = { "bold" } },
-          --
-          -- ["@constructor"] = { fg = C.blue, style = { "bold" } },
-          -- ["@namespace"] = { fg = C.mauve },
-          -- ["@module"] = { fg = C.lavender },
-          --
-          -- ["@keyword"] = { fg = C.mauve },
-          -- ["@keyword.function"] = { fg = C.mauve },
-          -- ["@keyword.operator"] = { fg = C.mauve },
-          -- ["@keyword.return"] = { fg = C.red, style = { "italic" } },
+          ["@type"] = { fg = C.blue },
+          ["@type.builtin"] = { fg = C.sapphire },
+          ["@type.definition"] = { fg = C.blue, style = { "bold" } },
+
+          ["@constructor"] = { fg = C.blue, style = { "bold" } },
+          ["@namespace"] = { fg = C.mauve },
+          ["@module"] = { fg = C.lavender },
+
+          ["@keyword"] = { fg = C.mauve },
+          ["@keyword.function"] = { fg = C.mauve },
+          ["@keyword.operator"] = { fg = C.mauve },
+          ["@keyword.return"] = { fg = C.red, style = { "italic" } },
           --
           -- ["@operator"] = { fg = C.sky },
           -- ["@punctuation.bracket"] = { fg = C.overlay2 },
