@@ -17,18 +17,21 @@ return {
           CursorLineNr = { fg = C.maroon, bold = true },
 
           -- -- C++ readability: cool down the warm palette
-          ["@type"] = { fg = C.blue },
-          ["@type.builtin"] = { fg = C.sapphire },
-          ["@type.definition"] = { fg = C.blue, style = { "bold" } },
+          ["@type"] = { fg = C.sky, bold = true },
+          ["Type"] = { fg = C.sky, italic = false },
+          ["StorageClass"] = { fg = C.sky },
+          -- ["@type.builtin"] = { fg = C.sapphire },
+          -- ["@type.definition"] = { fg = C.blue, style = { "bold" } },
 
-          ["@constructor"] = { fg = C.blue, style = { "bold" } },
-          ["@namespace"] = { fg = C.mauve },
-          ["@module"] = { fg = C.lavender },
+          -- ["@constructor"] = { fg = C.blue, style = { "bold" } },
+          -- ["@namespace"] = { fg = C.mauve },
+          -- ["@module"] = { fg = C.sky, italic = false },
+          -- ["@function.builtin"] = { fg = C.blue, italic = true },
 
-          ["@keyword"] = { fg = C.mauve },
-          ["@keyword.function"] = { fg = C.mauve },
-          ["@keyword.operator"] = { fg = C.mauve },
-          ["@keyword.return"] = { fg = C.red, style = { "italic" } },
+          -- ["@keyword"] = { fg = C.mauve },
+          -- ["@keyword.function"] = { fg = C.mauve },
+          -- ["@keyword.operator"] = { fg = C.mauve },
+          -- ["@keyword.return"] = { fg = C.red, style = { "italic" } },
           --
           -- ["@operator"] = { fg = C.sky },
           -- ["@punctuation.bracket"] = { fg = C.overlay2 },
@@ -40,8 +43,8 @@ return {
           -- ["@function.method"] = { fg = C.teal },
           -- ["@function.method.call"] = { fg = C.teal },
           --
-          -- ["@parameter"] = { fg = C.flamingo, style = { "italic" } },
-          -- ["@parameter.reference"] = { fg = C.flamingo },
+          -- ["@parameter"] = { fg = C.sapphire, style = { "italic" } },
+          -- ["@parameter.reference"] = { fg = C.sapphire },
           --
           -- ["@variable"] = { fg = C.lavender },
           -- ["@variable.builtin"] = { fg = C.red, style = { "italic" } },
