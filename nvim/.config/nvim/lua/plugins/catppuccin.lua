@@ -17,15 +17,15 @@ return {
           CursorLineNr = { fg = C.maroon, bold = true },
 
           -- -- C++ readability: cool down the warm palette
-          ["@type"] = { fg = C.sky, bold = true },
-          ["Type"] = { fg = C.sky, italic = false },
+          ["@type"] = { fg = C.sapphire, italic = false },
+          ["Type"] = { fg = C.sapphire, italic = false },
           ["StorageClass"] = { fg = C.sky },
           -- ["@type.builtin"] = { fg = C.sapphire },
           -- ["@type.definition"] = { fg = C.blue, style = { "bold" } },
 
           -- ["@constructor"] = { fg = C.blue, style = { "bold" } },
           -- ["@namespace"] = { fg = C.mauve },
-          -- ["@module"] = { fg = C.sky, italic = false },
+          ["@module"] = { fg = C.sapphire, italic = false },
           -- ["@function.builtin"] = { fg = C.blue, italic = true },
 
           -- ["@keyword"] = { fg = C.mauve },
