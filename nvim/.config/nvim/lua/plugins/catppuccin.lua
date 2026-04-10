@@ -14,18 +14,19 @@ return {
         return {
           -- Core editor
           LineNr = { fg = C.overlay1 },
-          CursorLineNr = { fg = C.maroon, bold = true },
+          CursorLineNr = { fg = C.maroon, bold = false },
 
           -- -- C++ readability: cool down the warm palette
-          ["@type"] = { fg = C.sapphire, italic = false },
-          ["Type"] = { fg = C.sapphire, italic = false },
-          ["StorageClass"] = { fg = C.sky },
+          ["@type"] = { fg = C.sapphire, bold = false },
+          ["Type"] = { fg = C.sapphire, italic = true },
+          ["StorageClass"] = { fg = C.sapphire, italic = true },
+          ["@variable.parameter"] = { fg = C.pink },
           -- ["@type.builtin"] = { fg = C.sapphire },
           -- ["@type.definition"] = { fg = C.blue, style = { "bold" } },
 
           -- ["@constructor"] = { fg = C.blue, style = { "bold" } },
           -- ["@namespace"] = { fg = C.mauve },
-          ["@module"] = { fg = C.sapphire, italic = false },
+          ["@module"] = { fg = C.rosewater, italic = true },
           -- ["@function.builtin"] = { fg = C.blue, italic = true },
 
           -- ["@keyword"] = { fg = C.mauve },
