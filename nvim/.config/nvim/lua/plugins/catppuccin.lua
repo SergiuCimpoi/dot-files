@@ -17,11 +17,20 @@ return {
           CursorLineNr = { fg = C.maroon, bold = false },
 
           -- -- C++ readability: cool down the warm palette
-          ["@type"] = { fg = C.sky, bold = false },
-          ["Type"] = { fg = C.sky, italic = true },
-          -- ["StorageClass"] = { fg = C.sapphire, italic = true },
-          -- ["@variable.parameter"] = { fg = C.pink },
-          -- ["@module"] = { fg = C.rosewater, italic = true },
+          ["@type"] = { fg = C.green, bold = false },
+          ["Type"] = { fg = C.mauve, italic = true },
+          -- ["@operator"] = { fg = C.sapphire },
+          ["String"] = { fg = C.rosewater },
+          ["@variable.parameter"] = { fg = C.pink },
+          ["StorageClass"] = { fg = C.mauve, italic = true },
+          ["Structure"] = { fg = C.mauve, italic = true },
+          ["Statement"] = { fg = C.mauve, italic = true },
+          ["Conditional"] = { fg = C.mauve, italic = true },
+          ["Repeat"] = { fg = C.mauve, italic = true },
+          ["Include"] = { fg = C.mauve, italic = true },
+          ["Label"] = { fg = C.mauve, italic = true },
+          ["@module"] = { fg = C.green, italic = true },
+          ["@lsp.type.enumMember"] = { fg = C.green, italic = false },
 
           -- ["@type.builtin"] = { fg = C.sapphire },
           -- ["@type.definition"] = { fg = C.blue, style = { "bold" } },
@@ -113,7 +122,6 @@ return {
 
       styles = {
         comments = { "italic" },
-        conditionals = { "italic" },
       },
     })
   end,
