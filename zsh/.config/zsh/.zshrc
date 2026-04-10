@@ -15,6 +15,8 @@ export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
 # gcc
 export CC=/usr/sbin/gcc
 export CXX=/usr/sbin/g++
+# cmake
+export CMAKE_BUILD_PARALLEL_LEVEL="$(nproc)"
 
 setopt INC_APPEND_HISTORY
 
