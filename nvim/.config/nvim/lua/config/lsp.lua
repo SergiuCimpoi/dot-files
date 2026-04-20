@@ -4,24 +4,58 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
-vim.lsp.config("clangd", {
-  capabilities = capabilities,
-})
+local function is_executable(cmd)
+  return vim.fn.executable(cmd) == 1
+end
 
-vim.lsp.config("lua_ls", {
-  capabilities = capabilities,
-})
+local function python_has_module(python, module)
+  if not is_executable(python) then
+    return false
+  end
 
-vim.lsp.config("hls", {
-  capabilities = capabilities,
-})
+  local result = vim.system({ python, "-c", "import " .. module }, { text = true }):wait()
+  return result.code == 0
+end
 
-vim.lsp.config("eslint", {
-  capabilities = capabilities,
+local function first_python_with_module(module)
+  for _, python in ipairs({ "python3", "python", "/usr/sbin/python" }) do
+    if python_has_module(python, module) then
+      return python
+    end
+  end
+  return nil
+end
+
+local function enable_if_ok(server, opts)
+  local config = vim.tbl_deep_extend("force", { capabilities = capabilities }, opts or {})
+  vim.lsp.config(server, config)
+
+  local cmd = config.cmd
+  if cmd ~= nil then
+    local exe = type(cmd) == "table" and cmd[1] or cmd
+    if not exe or vim.fn.executable(exe) ~= 1 then
+      vim.notify(("Skipping LSP %s: %s is not executable"):format(server, tostring(exe)), vim.log.levels.DEBUG)
+      return
+    end
+  end
+
+  vim.lsp.enable(server)
+end
+
+enable_if_ok("clangd", {})
+
+enable_if_ok("lua_ls", {})
+
+enable_if_ok("hls", {})
+
+enable_if_ok("eslint", {
+
   flags = {
+
     allow_incremental_sync = false,
     debounce_text_changes = 1000,
   },
+
   settings = {
     run = "onSave",
     format = false,
@@ -29,9 +63,21 @@ vim.lsp.config("eslint", {
   },
 })
 
-vim.diagnostic.config({ update_in_insert = false })
+-- Only enable this if you actually work on TVM / similar FFI-heavy projects.
+do
+  local python = first_python_with_module("ffi_navigator")
+  if python then
+    vim.lsp.config("tvm_ffi_navigator", {
+      capabilities = capabilities,
 
-vim.lsp.enable({ "clangd", "lua_ls", "eslint", "hls" })
+      cmd = { python, "-m", "ffi_navigator.langserver" },
+      filetypes = { "c", "cpp", "python" },
+    })
+    vim.lsp.enable("tvm_ffi_navigator")
+  end
+end
+
+vim.diagnostic.config({ update_in_insert = false })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
@@ -59,11 +105,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
         group = highlight_augroup,
         callback = vim.lsp.buf.document_highlight,
       })
+
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+
         buffer = event.buf,
         group = highlight_augroup,
         callback = vim.lsp.buf.clear_references,
       })
+
       vim.api.nvim_create_autocmd("LspDetach", {
         group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
         callback = function(event2)
