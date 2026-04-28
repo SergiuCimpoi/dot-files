@@ -127,4 +127,6 @@ require("catppuccin").setup({
   },
 })
 
+vim.g.python3_host_prog = "/usr/bin/python"
+
 vim.cmd.colorscheme("catppuccin-nvim")

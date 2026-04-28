@@ -146,6 +146,9 @@ return {
     dap.configurations.c = dbg.config
     dap.configurations.cpp = dbg.config
 
+    dap.defaults.fallback.auto_continue_if_many_stopped = false
+    require("dap").set_log_level("TRACE")
+
     -- rust
     -- local rust_dbg = require("config.debug.codelldb")
     -- dap.adapters.codelldb = rust_dbg.adapter

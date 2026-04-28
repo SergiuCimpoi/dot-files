@@ -1,4 +1,4 @@
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "high"
 web_search = "cached"
 sandbox_mode = "workspace-write"
@@ -32,4 +32,7 @@ trust_level = "trusted"
 
 [tui]
 status_line = ["model-with-reasoning", "context-remaining", "current-dir", "total-input-tokens", "total-output-tokens"]
+
+[tui.model_availability_nux]
+"gpt-5.5" = 1
 
