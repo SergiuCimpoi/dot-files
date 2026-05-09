@@ -5,7 +5,16 @@ return {
   ---@diagnostic disable-next-line: undefined-doc-name
   ---@type snacks.Config
   opts = {
-    bigfile = { enabled = true },
+    bigfile = {
+      size = 5 * 1024 * 1024,
+      line_length = 20000,
+      setup = function(ctx)
+        if ctx.ft == "json" then
+          vim.bo[ctx.buf].filetype = "json"
+          return
+        end
+      end,
+    },
     dashboard = { enabled = true },
     indent = {
       enabled = true,
