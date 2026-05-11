@@ -7,6 +7,7 @@ export HISTSIZE=268435456
 export SAVEHIST="$HISTSIZE"
 export HISTFILE="$ZDOTDIR/.zsh_history"
 export EDITOR="nvim"
+export SUDO_EDITOR=/home/srj/.local/share/bob/nvim-bin/nvim sudoedit 
 export VISUAL="nvim"
 export TERM=xterm-256color
 export CHROME_PASSWORD_STORE=basic
