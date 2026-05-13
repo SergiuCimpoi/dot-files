@@ -42,6 +42,7 @@ local function enable_if_ok(server, opts)
   vim.lsp.enable(server)
 end
 
+-- enable_if_ok("clangd", require("config.nvim.lsp.clangd"))
 enable_if_ok("clangd", {})
 
 enable_if_ok("lua_ls", {})
@@ -49,7 +50,6 @@ enable_if_ok("lua_ls", {})
 enable_if_ok("hls", {})
 
 enable_if_ok("eslint", {
-
   flags = {
 
     allow_incremental_sync = false,

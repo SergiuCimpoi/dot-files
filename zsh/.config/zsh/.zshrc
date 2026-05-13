@@ -11,6 +11,7 @@ export VISUAL="nvim"
 export TERM=xterm-256color
 export CHROME_PASSWORD_STORE=basic
 export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+export SUDO_EDITOR="$(which nvim)" sudoedit
 
 # gcc
 export CC=/usr/sbin/gcc

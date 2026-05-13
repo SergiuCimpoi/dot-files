@@ -86,7 +86,7 @@ suppress_preload = false
 
 [plugin]
 spotters = [
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	# { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
 	{ mime = "image/*", run = "image" },
 	{ name = "*/", run = "folder" },
 	# Code
@@ -95,7 +95,7 @@ spotters = [
 	# keep any other spotters you had
 ]
 preloaders = [
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	# { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
 	{ mime = "image/*", run = "image" },
 	{ mime = "video/*", run = "video" },
 	{ mime = "application/pdf", run = "pdf" },
@@ -109,7 +109,7 @@ previewers = [
 	# JSON
 	{ mime = "application/{json,ndjson}", run = "json" },
 	# Image
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	# { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
 	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
